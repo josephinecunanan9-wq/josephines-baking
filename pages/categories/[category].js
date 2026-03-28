@@ -54,7 +54,7 @@ export default function CategoryPage({ category, recipes }) {
         <h1 style={{
           fontFamily: "'Alex Brush', cursive",
           fontSize: '64px',
-          color: 'var(--text-dark)',
+          color: 'var(--plum)',
           lineHeight: 1,
           marginBottom: '12px',
         }}>
