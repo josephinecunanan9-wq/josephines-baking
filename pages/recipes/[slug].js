@@ -192,26 +192,51 @@ export default function RecipePage({ recipe, parsed }) {
                   return (
                     <li key={i} style={{
                       display: 'flex',
-                      justifyContent: 'space-between',
                       alignItems: 'baseline',
                       padding: '9px 0',
                       borderBottom: '0.5px solid rgba(155,123,140,0.12)',
                       fontSize: '16px',
                       fontWeight: 300,
-                      gap: '16px',
+                      gap: '12px',
                     }}>
-                      <span>{name}</span>
-                      {amount && (
-                        <span style={{
-                          fontFamily: "'Jost', sans-serif",
-                          fontSize: '12px',
-                          color: 'var(--mauve)',
-                          fontWeight: 400,
-                          whiteSpace: 'nowrap',
-                        }}>
-                          {amount}
-                        </span>
-                      )}
+                      <input
+                        type="checkbox"
+                        id={`ing-${i}`}
+                        style={{
+                          width: '15px',
+                          height: '15px',
+                          flexShrink: 0,
+                          accentColor: 'var(--plum)',
+                          cursor: 'pointer',
+                          marginTop: '3px',
+                        }}
+                        onChange={e => {
+                          const label = e.target.nextSibling
+                          label.style.textDecoration = e.target.checked ? 'line-through' : 'none'
+                          label.style.color = e.target.checked ? 'var(--mauve-light)' : 'var(--text-dark)'
+                        }}
+                      />
+                      <label htmlFor={`ing-${i}`} style={{
+                        flex: 1,
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        cursor: 'pointer',
+                        transition: 'color 0.2s',
+                        gap: '16px',
+                      }}>
+                        <span>{name}</span>
+                        {amount && (
+                          <span style={{
+                            fontFamily: "'Jost', sans-serif",
+                            fontSize: '12px',
+                            color: 'var(--mauve)',
+                            fontWeight: 400,
+                            whiteSpace: 'nowrap',
+                          }}>
+                            {amount}
+                          </span>
+                        )}
+                      </label>
                     </li>
                   )
                 })}
@@ -238,29 +263,55 @@ export default function RecipePage({ recipe, parsed }) {
                     const parts = ing.split(':')
                     const name = parts[0]?.trim()
                     const amount = parts[1]?.trim()
+                    const id = `sec-${section.name}-${i}`
                     return (
                       <li key={i} style={{
                         display: 'flex',
-                        justifyContent: 'space-between',
                         alignItems: 'baseline',
                         padding: '9px 0',
                         borderBottom: '0.5px solid rgba(155,123,140,0.12)',
                         fontSize: '16px',
                         fontWeight: 300,
-                        gap: '16px',
+                        gap: '12px',
                       }}>
-                        <span>{name}</span>
-                        {amount && (
-                          <span style={{
-                            fontFamily: "'Jost', sans-serif",
-                            fontSize: '12px',
-                            color: 'var(--mauve)',
-                            fontWeight: 400,
-                            whiteSpace: 'nowrap',
-                          }}>
-                            {amount}
-                          </span>
-                        )}
+                        <input
+                          type="checkbox"
+                          id={id}
+                          style={{
+                            width: '15px',
+                            height: '15px',
+                            flexShrink: 0,
+                            accentColor: 'var(--plum)',
+                            cursor: 'pointer',
+                            marginTop: '3px',
+                          }}
+                          onChange={e => {
+                            const label = e.target.nextSibling
+                            label.style.textDecoration = e.target.checked ? 'line-through' : 'none'
+                            label.style.color = e.target.checked ? 'var(--mauve-light)' : 'var(--text-dark)'
+                          }}
+                        />
+                        <label htmlFor={id} style={{
+                          flex: 1,
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          cursor: 'pointer',
+                          transition: 'color 0.2s',
+                          gap: '16px',
+                        }}>
+                          <span>{name}</span>
+                          {amount && (
+                            <span style={{
+                              fontFamily: "'Jost', sans-serif",
+                              fontSize: '12px',
+                              color: 'var(--mauve)',
+                              fontWeight: 400,
+                              whiteSpace: 'nowrap',
+                            }}>
+                              {amount}
+                            </span>
+                          )}
+                        </label>
                       </li>
                     )
                   })}
