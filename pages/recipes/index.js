@@ -41,20 +41,11 @@ export default function RecipesIndex({ recipes }) {
         <h1 style={{
           fontFamily: "'Alex Brush', cursive",
           fontSize: '64px',
-          color: 'var(--text-dark)',
+          color: 'var(--plum)',
           lineHeight: 1,
-          marginBottom: '12px',
         }}>
           All Recipes
         </h1>
-        <p style={{
-          fontFamily: "'Jost', sans-serif",
-          fontSize: '14px',
-          color: 'var(--text-mid)',
-          fontWeight: 300,
-        }}>
-          {recipes.length} recipes and counting
-        </p>
       </div>
 
       {/* Category filter */}
