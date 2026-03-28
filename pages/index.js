@@ -395,14 +395,20 @@ export default function Home({ featured, recent, categories }) {
 export async function getStaticProps() {
   const allRecipes = await getAllRecipes()
 
-  // Filter to published recipes only
-  const published = allRecipes.filter(r => r.status === 'Draft' || r.title)
+  const published = allRecipes.filter(r => r.title && r.slug && r.coverImage)
 
-  // Featured: first 4 with cover images
-  const featured = published.filter(r => r.coverImage).slice(0, 4)
+  // Sort by publish date descending so newest recipes appear first
+  const sorted = published.sort((a, b) => {
+    const dateA = a.publishDate ? new Date(a.publishDate) : new Date(0)
+    const dateB = b.publishDate ? new Date(b.publishDate) : new Date(0)
+    return dateB - dateA
+  })
 
-  // Recent: next 6
-  const recent = published.filter(r => r.coverImage).slice(4, 10)
+  // Featured: 4 most recent with cover images
+  const featured = sorted.slice(0, 4)
+
+  // Recent: next 6 after featured
+  const recent = sorted.slice(4, 10)
 
   return {
     props: { featured, recent },
