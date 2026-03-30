@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useState, useEffect, useRef } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import Newsletter from '../components/Newsletter'
 import RecipeCard from '../components/RecipeCard'
 import { getAllRecipes } from '../lib/recipes'
 
@@ -21,18 +22,14 @@ export default function SearchPage({ recipes }) {
       setSearched(false)
       return
     }
-
     const q = query.toLowerCase().trim()
-    const filtered = recipes.filter(r => {
-      return (
-        r.title?.toLowerCase().includes(q) ||
-        r.category?.toLowerCase().includes(q) ||
-        r.tags?.some(t => t.toLowerCase().includes(q)) ||
-        r.seoDescription?.toLowerCase().includes(q) ||
-        r.postBody?.toLowerCase().includes(q)
-      )
-    })
-
+    const filtered = recipes.filter(r => (
+      r.title?.toLowerCase().includes(q) ||
+      r.category?.toLowerCase().includes(q) ||
+      r.tags?.some(t => t.toLowerCase().includes(q)) ||
+      r.seoDescription?.toLowerCase().includes(q) ||
+      r.postBody?.toLowerCase().includes(q)
+    ))
     setResults(filtered)
     setSearched(true)
   }, [query, recipes])
@@ -72,12 +69,7 @@ export default function SearchPage({ recipes }) {
         }}>
           Search for a recipe
         </h1>
-
-        <div style={{
-          maxWidth: '600px',
-          margin: '0 auto',
-          position: 'relative',
-        }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto', position: 'relative' }}>
           <input
             ref={inputRef}
             type="text"
@@ -100,12 +92,8 @@ export default function SearchPage({ recipes }) {
             onBlur={e => e.target.style.borderColor = 'var(--mauve-light)'}
           />
           <div style={{
-            position: 'absolute',
-            right: '18px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            color: 'var(--mauve)',
-            pointerEvents: 'none',
+            position: 'absolute', right: '18px', top: '50%',
+            transform: 'translateY(-50%)', color: 'var(--mauve)', pointerEvents: 'none',
           }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="11" cy="11" r="8"/>
@@ -113,30 +101,17 @@ export default function SearchPage({ recipes }) {
             </svg>
           </div>
         </div>
-
-        {/* Quick suggestions */}
         {!query && (
-          <div style={{
-            marginTop: '20px',
-            display: 'flex',
-            gap: '10px',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-          }}>
+          <div style={{ marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
             {['Brown Butter', 'Matcha', 'Pumpkin', 'Chocolate', 'Lemon', 'Cinnamon'].map(suggestion => (
               <button
                 key={suggestion}
                 onClick={() => setQuery(suggestion)}
                 style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: '10px',
-                  letterSpacing: '0.15em',
-                  color: 'var(--mauve)',
-                  border: '0.5px solid var(--border-m)',
-                  background: 'transparent',
-                  padding: '6px 14px',
-                  cursor: 'pointer',
-                  fontWeight: 400,
+                  fontFamily: "'Jost', sans-serif", fontSize: '10px',
+                  letterSpacing: '0.15em', color: 'var(--mauve)',
+                  border: '0.5px solid var(--border-m)', background: 'transparent',
+                  padding: '6px 14px', cursor: 'pointer', fontWeight: 400,
                 }}
               >
                 {suggestion}
@@ -149,55 +124,38 @@ export default function SearchPage({ recipes }) {
       <section style={{ padding: '56px 40px', background: 'var(--cream)', minHeight: '400px' }}>
         {searched && query && (
           <div style={{
-            fontFamily: "'Jost', sans-serif",
-            fontSize: '11px',
-            letterSpacing: '0.15em',
-            color: 'var(--mauve)',
-            marginBottom: '32px',
-            textAlign: 'center',
+            fontFamily: "'Jost', sans-serif", fontSize: '11px',
+            letterSpacing: '0.15em', color: 'var(--mauve)',
+            marginBottom: '32px', textAlign: 'center',
           }}>
             {results.length > 0
               ? `${results.length} recipe${results.length === 1 ? '' : 's'} for "${query}"`
-              : `No recipes found for "${query}"`
-            }
+              : `No recipes found for "${query}"`}
           </div>
         )}
-
         {results.length > 0 && (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '20px',
-          }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
             {results.map(recipe => (
               <RecipeCard key={recipe.slug} recipe={recipe} />
             ))}
           </div>
         )}
-
         {searched && results.length === 0 && query && (
           <div style={{ textAlign: 'center', paddingTop: '40px' }}>
             <span style={{
-              fontFamily: "'Alex Brush', cursive",
-              fontSize: '48px',
-              color: 'var(--mauve-light)',
-              display: 'block',
-              marginBottom: '16px',
+              fontFamily: "'Alex Brush', cursive", fontSize: '48px',
+              color: 'var(--mauve-light)', display: 'block', marginBottom: '16px',
             }}>
               nothing yet...
             </span>
-            <p style={{
-              fontFamily: "'Jost', sans-serif",
-              fontSize: '13px',
-              color: 'var(--text-mid)',
-              fontWeight: 300,
-            }}>
+            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: '13px', color: 'var(--text-mid)', fontWeight: 300 }}>
               Try searching for an ingredient, category, or flavor.
             </p>
           </div>
         )}
       </section>
 
+      <Newsletter />
       <Footer />
     </>
   )
