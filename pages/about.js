@@ -2,24 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-
-const PLUM_GLOW = '0 8px 32px rgba(113,12,33,0.08)'
-const PLUM_GLOW_HOVER = '0 12px 40px rgba(113,12,33,0.14)'
-
-// White overlay for screenshots that pulled dark
-const overlayStyle = {
-  position: 'absolute',
-  inset: 0,
-  background: 'rgba(255,255,255,0.22)',
-  pointerEvents: 'none',
-}
-
-const photoStyle = {
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  display: 'block',
-}
+import { VerticalPhotoMarquee } from '../components/PhotoMarquee'
 
 export default function About() {
   return (
@@ -32,7 +15,6 @@ export default function About() {
       <Nav />
 
       <main>
-        {/* HERO BIO SECTION */}
         <section style={{
           background: 'var(--warm-white)',
           padding: '80px 40px',
@@ -81,43 +63,8 @@ export default function About() {
             </Link>
           </div>
 
-          {/* PHOTO GRID */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-            {/* Photo 1 — full width top, no overlay */}
-            <div style={{
-              gridColumn: '1 / 3',
-              height: '320px',
-              overflow: 'hidden',
-              position: 'relative',
-              boxShadow: PLUM_GLOW,
-            }}>
-              <img src="/Josephines Baking Recipes-1.jpeg" alt="Josephine's Baking" style={photoStyle} />
-            </div>
-
-            {/* Photo 2 — with soft white overlay */}
-            <div style={{ height: '190px', overflow: 'hidden', position: 'relative', boxShadow: PLUM_GLOW }}>
-              <img src="/Josephines Baking Recipes-2.PNG" alt="Josephine's Baking" style={photoStyle} />
-              <div style={overlayStyle} />
-            </div>
-
-            {/* Photo 3 — with soft white overlay */}
-            <div style={{ height: '190px', overflow: 'hidden', position: 'relative', boxShadow: PLUM_GLOW }}>
-              <img src="/Josephines Baking Recipes-3.PNG" alt="Josephine's Baking" style={photoStyle} />
-              <div style={overlayStyle} />
-            </div>
-
-            {/* Photo 4 — full width bottom, with soft white overlay */}
-            <div style={{
-              gridColumn: '1 / 3',
-              height: '220px',
-              overflow: 'hidden',
-              position: 'relative',
-              boxShadow: PLUM_GLOW,
-            }}>
-              <img src="/Josephines Baking Recipes-4.PNG" alt="Josephine's Baking" style={photoStyle} />
-              <div style={overlayStyle} />
-            </div>
-          </div>
+          {/* VERTICAL PHOTO MARQUEE — north to south */}
+          <VerticalPhotoMarquee />
         </section>
       </main>
 
