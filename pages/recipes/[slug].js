@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import Newsletter from '../../components/Newsletter'
 import { getAllRecipes, getRecipeBySlug, parsePostBody } from '../../lib/recipes'
 
 export default function RecipePage({ recipe, parsed }) {
@@ -24,10 +25,7 @@ export default function RecipePage({ recipe, parsed }) {
               name: recipe.title,
               image: recipe.coverImage ? [recipe.coverImage] : [],
               description: recipe.seoDescription,
-              author: {
-                '@type': 'Person',
-                name: 'Josephine',
-              },
+              author: { '@type': 'Person', name: 'Josephine' },
               recipeCategory: recipe.category,
               keywords: recipe.tags.join(', '),
               recipeIngredient: [
@@ -88,7 +86,6 @@ export default function RecipePage({ recipe, parsed }) {
           gap: '64px',
           alignItems: 'start',
         }}>
-
           {/* LEFT: Image */}
           <div style={{ position: 'sticky', top: '88px' }}>
             {recipe.coverImage && (
@@ -122,7 +119,6 @@ export default function RecipePage({ recipe, parsed }) {
 
           {/* RIGHT: Content */}
           <div>
-            {/* Category + title */}
             <div style={{
               fontFamily: "'Jost', sans-serif",
               fontSize: '9px',
@@ -134,7 +130,6 @@ export default function RecipePage({ recipe, parsed }) {
             }}>
               {recipe.category}
             </div>
-
             <h1 style={{
               fontSize: '42px',
               fontWeight: 300,
@@ -145,7 +140,6 @@ export default function RecipePage({ recipe, parsed }) {
             }}>
               {recipe.title}
             </h1>
-
             <span style={{
               fontFamily: "'Alex Brush', cursive",
               fontSize: '28px',
@@ -155,7 +149,6 @@ export default function RecipePage({ recipe, parsed }) {
             }}>
               by Josephine
             </span>
-
             <p style={{
               fontSize: '15px',
               color: 'var(--text-mid)',
@@ -182,7 +175,6 @@ export default function RecipePage({ recipe, parsed }) {
               Ingredients
             </div>
 
-            {/* Simple ingredients */}
             {parsed.ingredients.length > 0 && (
               <ul style={{ listStyle: 'none', marginBottom: parsed.sections.length > 0 ? '24px' : '32px' }}>
                 {parsed.ingredients.map((ing, i) => {
@@ -202,14 +194,7 @@ export default function RecipePage({ recipe, parsed }) {
                       <input
                         type="checkbox"
                         id={`ing-${i}`}
-                        style={{
-                          width: '15px',
-                          height: '15px',
-                          flexShrink: 0,
-                          accentColor: 'var(--plum)',
-                          cursor: 'pointer',
-                          marginTop: '3px',
-                        }}
+                        style={{ width: '15px', height: '15px', flexShrink: 0, accentColor: 'var(--plum)', cursor: 'pointer', marginTop: '3px' }}
                         onChange={e => {
                           const label = e.target.nextSibling
                           label.style.textDecoration = e.target.checked ? 'line-through' : 'none'
@@ -217,21 +202,14 @@ export default function RecipePage({ recipe, parsed }) {
                         }}
                       />
                       <label htmlFor={`ing-${i}`} style={{
-                        flex: 1,
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        cursor: 'pointer',
-                        transition: 'color 0.2s',
-                        gap: '16px',
+                        flex: 1, display: 'flex', justifyContent: 'space-between',
+                        cursor: 'pointer', transition: 'color 0.2s', gap: '16px',
                       }}>
                         <span>{name}</span>
                         {amount && (
                           <span style={{
-                            fontFamily: "'Jost', sans-serif",
-                            fontSize: '12px',
-                            color: 'var(--mauve)',
-                            fontWeight: 400,
-                            whiteSpace: 'nowrap',
+                            fontFamily: "'Jost', sans-serif", fontSize: '12px',
+                            color: 'var(--mauve)', fontWeight: 400, whiteSpace: 'nowrap',
                           }}>
                             {amount}
                           </span>
@@ -243,7 +221,6 @@ export default function RecipePage({ recipe, parsed }) {
               </ul>
             )}
 
-            {/* Multi-section ingredients */}
             {parsed.sections.map((section) => (
               <div key={section.name} style={{ marginBottom: '24px' }}>
                 <div style={{
@@ -266,25 +243,13 @@ export default function RecipePage({ recipe, parsed }) {
                     const id = `sec-${section.name}-${i}`
                     return (
                       <li key={i} style={{
-                        display: 'flex',
-                        alignItems: 'baseline',
-                        padding: '9px 0',
-                        borderBottom: '0.5px solid rgba(155,123,140,0.12)',
-                        fontSize: '16px',
-                        fontWeight: 300,
-                        gap: '12px',
+                        display: 'flex', alignItems: 'baseline',
+                        padding: '9px 0', borderBottom: '0.5px solid rgba(155,123,140,0.12)',
+                        fontSize: '16px', fontWeight: 300, gap: '12px',
                       }}>
                         <input
-                          type="checkbox"
-                          id={id}
-                          style={{
-                            width: '15px',
-                            height: '15px',
-                            flexShrink: 0,
-                            accentColor: 'var(--plum)',
-                            cursor: 'pointer',
-                            marginTop: '3px',
-                          }}
+                          type="checkbox" id={id}
+                          style={{ width: '15px', height: '15px', flexShrink: 0, accentColor: 'var(--plum)', cursor: 'pointer', marginTop: '3px' }}
                           onChange={e => {
                             const label = e.target.nextSibling
                             label.style.textDecoration = e.target.checked ? 'line-through' : 'none'
@@ -292,21 +257,14 @@ export default function RecipePage({ recipe, parsed }) {
                           }}
                         />
                         <label htmlFor={id} style={{
-                          flex: 1,
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          cursor: 'pointer',
-                          transition: 'color 0.2s',
-                          gap: '16px',
+                          flex: 1, display: 'flex', justifyContent: 'space-between',
+                          cursor: 'pointer', transition: 'color 0.2s', gap: '16px',
                         }}>
                           <span>{name}</span>
                           {amount && (
                             <span style={{
-                              fontFamily: "'Jost', sans-serif",
-                              fontSize: '12px',
-                              color: 'var(--mauve)',
-                              fontWeight: 400,
-                              whiteSpace: 'nowrap',
+                              fontFamily: "'Jost', sans-serif", fontSize: '12px',
+                              color: 'var(--mauve)', fontWeight: 400, whiteSpace: 'nowrap',
                             }}>
                               {amount}
                             </span>
@@ -332,7 +290,6 @@ export default function RecipePage({ recipe, parsed }) {
             }}>
               Instructions
             </div>
-
             <div style={{ fontSize: '17px', fontWeight: 300, lineHeight: 1.9, color: 'var(--text-dark)' }}>
               {parsed.instructions.split('\n').filter(Boolean).map((para, i) => (
                 <p key={i} style={{ marginBottom: '16px' }}>{para}</p>
@@ -342,6 +299,7 @@ export default function RecipePage({ recipe, parsed }) {
         </div>
       </main>
 
+      <Newsletter />
       <Footer />
     </>
   )
@@ -349,21 +307,13 @@ export default function RecipePage({ recipe, parsed }) {
 
 export async function getStaticPaths() {
   const recipes = await getAllRecipes()
-  const paths = recipes
-    .filter(r => r.slug)
-    .map(r => ({ params: { slug: r.slug } }))
-
+  const paths = recipes.filter(r => r.slug).map(r => ({ params: { slug: r.slug } }))
   return { paths, fallback: 'blocking' }
 }
 
 export async function getStaticProps({ params }) {
   const recipe = await getRecipeBySlug(params.slug)
   if (!recipe) return { notFound: true }
-
   const parsed = parsePostBody(recipe.postBody)
-
-  return {
-    props: { recipe, parsed },
-    revalidate: 3600,
-  }
+  return { props: { recipe, parsed }, revalidate: 3600 }
 }
