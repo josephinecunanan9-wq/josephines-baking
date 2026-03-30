@@ -232,17 +232,12 @@ export default function Home({ featured, recent, categories }) {
         borderBottom: '0.5px solid var(--border-m)',
         padding: '80px 40px',
         display: 'grid',
-        gridTemplateColumns: '1fr 1.1fr',
+        gridTemplateColumns: '1fr 1fr',
         gap: '72px',
         alignItems: 'center',
+        maxWidth: '1100px',
+        margin: '0 auto',
       }}>
-        <div style={{ height: '460px', overflow: 'hidden', background: 'var(--mauve-pale)', boxShadow: '0 8px 32px rgba(113,12,33,0.08)' }}>
-          <img
-            src="/Josephines Baking Recipes-1.jpeg"
-            alt="Josephine"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          />
-        </div>
         <div>
           <div style={{
             fontFamily: "'Jost', sans-serif",
@@ -276,6 +271,34 @@ export default function Home({ featured, recent, categories }) {
           <Link href="/about" className="btn-ghost" style={{ marginTop: '32px', display: 'inline-flex' }}>
             More about me
           </Link>
+        </div>
+
+        {/* Decorative baking icons grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '24px',
+          opacity: 0.15,
+        }}>
+          {[...Array(9)].map((_, i) => (
+            <div key={i} style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--plum)',
+            }}>
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 48, height: 48 }}>
+                {i % 8 === 0 && <><circle cx="20" cy="20" r="14"/><circle cx="15" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="24" cy="14" r="1.5" fill="currentColor" stroke="none"/><circle cx="17" cy="24" r="1.5" fill="currentColor" stroke="none"/></>}
+                {i % 8 === 1 && <><path d="M13 22 c0-5 4-9 8-9s8 4 8 9"/><rect x="10" y="22" width="20" height="8" rx="2"/><path d="M20 22 c0-3-3-6-3-10 a3 3 0 0 1 6 0 c0 4-3 7-3 10"/></>}
+                {i % 8 === 2 && <><circle cx="20" cy="20" r="13"/><path d="M20 20 m0-8 a8 8 0 0 1 0 16 a5 5 0 0 1 0-10 a2.5 2.5 0 0 1 0 5" fill="none"/></>}
+                {i % 8 === 3 && <><rect x="7" y="22" width="26" height="10" rx="1"/><rect x="11" y="14" width="18" height="8"/><path d="M17 14 L17 10 M20 14 L20 9 M23 14 L23 10"/><circle cx="20" cy="9" r="1.2" fill="currentColor" stroke="none"/></>}
+                {i % 8 === 4 && <><path d="M8 30 L20 10 L32 30 Z"/><line x1="8" y1="30" x2="32" y2="30"/><line x1="11" y1="24" x2="29" y2="24"/></>}
+                {i % 8 === 5 && <><path d="M13 22 Q11 14 20 13 Q29 14 27 22"/><rect x="11" y="22" width="18" height="9" rx="1"/><path d="M15 16 Q20 11 25 16"/></>}
+                {i % 8 === 6 && <><rect x="9" y="9" width="22" height="22" rx="2"/><line x1="9" y1="20" x2="31" y2="20"/><line x1="20" y1="9" x2="20" y2="31"/></>}
+                {i % 8 === 7 && <><circle cx="20" cy="20" r="13"/><circle cx="20" cy="20" r="5"/></>}
+              </svg>
+            </div>
+          ))}
         </div>
       </section>
 
