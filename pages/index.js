@@ -232,14 +232,12 @@ export default function Home({ featured, recent, categories }) {
         gap: '72px',
         alignItems: 'center',
       }}>
-        <div style={{ height: '460px', overflow: 'hidden', background: 'var(--mauve-pale)' }}>
-          {recent[0]?.coverImage && (
-            <img
-              src={recent[0].coverImage}
-              alt="Josephine's Baking"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          )}
+        <div style={{ height: '460px', overflow: 'hidden', background: 'var(--mauve-pale)', boxShadow: '0 8px 32px rgba(113,12,33,0.08)' }}>
+          <img
+            src="/Josephines Baking Recipes-1.jpeg"
+            alt="Josephine"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
         </div>
         <div>
           <div style={{
@@ -289,6 +287,175 @@ export default function Home({ featured, recent, categories }) {
         <div className="recipe-grid">
           {recent.slice(0, 6).map((recipe) => (
             <RecipeCard key={recipe.slug} recipe={recipe} />
+          ))}
+        </div>
+      </section>
+
+      {/* FEATURED IN */}
+      <section style={{
+        background: 'var(--warm-white)',
+        borderTop: '0.5px solid var(--border-m)',
+        borderBottom: '0.5px solid var(--border-m)',
+        padding: '72px 40px',
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+          marginBottom: '36px',
+          paddingBottom: '16px',
+          borderBottom: '0.5px solid var(--border-m)',
+        }}>
+          <div>
+            <div style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: '9px',
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: 'var(--mauve)',
+              fontWeight: 400,
+              marginBottom: '3px',
+            }}>
+              In the press
+            </div>
+            <div style={{
+              fontFamily: "'Alex Brush', cursive",
+              fontSize: '44px',
+              color: 'var(--plum)',
+              lineHeight: 1,
+            }}>
+              Featured In
+            </div>
+          </div>
+          <div style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: '9px',
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            color: 'var(--text-mid)',
+            border: '0.5px solid var(--border-m)',
+            padding: '8px 18px',
+            fontWeight: 400,
+            boxShadow: '0 8px 32px rgba(113,12,33,0.08)',
+          }}>
+            Hedessent.ca
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {[
+            {
+              href: 'https://hedessent.ca/dessert-recipes/peppermint-macarons/',
+              slug: 'peppermint-macarons',
+              name: 'Peppermint Macarons',
+              desc: 'My peppermint macaron recipe featured in Hedessent\'s dessert collection, made with their Peppermint Flavour Drops.',
+              img: 'https://static.wixstatic.com/media/b3c1ed_526061a867174bc49e3da3f7e4f70c0d~mv2.jpg',
+            },
+            {
+              href: 'https://hedessent.ca/dessert-recipes/passion-fruit-fudge/',
+              slug: 'white-chocolate-passionfruit-fudge',
+              name: 'White Chocolate Passionfruit Fudge',
+              desc: 'My white chocolate passionfruit fudge featured in Hedessent\'s dessert collection, made with their Passionfruit Flavour Drops.',
+              img: 'https://static.wixstatic.com/media/b3c1ed_76bf153b93e947aebba9233bbc31a74c~mv2.jpg',
+            },
+          ].map((item) => (
+            <a
+              key={item.slug}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '280px 1fr',
+                background: 'var(--cream)',
+                border: '0.5px solid var(--border-m)',
+                boxShadow: '0 8px 32px rgba(113,12,33,0.08)',
+                textDecoration: 'none',
+                overflow: 'hidden',
+                transition: 'box-shadow 0.3s, transform 0.3s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.boxShadow = '0 12px 40px rgba(113,12,33,0.14)'
+                e.currentTarget.style.transform = 'translateY(-2px)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(113,12,33,0.08)'
+                e.currentTarget.style.transform = 'translateY(0)'
+              }}
+            >
+              <div style={{ height: '200px', overflow: 'hidden', background: 'var(--blush)', position: 'relative' }}>
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <span style={{
+                  position: 'absolute',
+                  top: '12px',
+                  left: '12px',
+                  background: 'var(--plum)',
+                  color: '#fff',
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: '7px',
+                  letterSpacing: '0.24em',
+                  textTransform: 'uppercase',
+                  padding: '4px 9px',
+                  fontWeight: 400,
+                }}>
+                  Featured Recipe
+                </span>
+              </div>
+              <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: '8px',
+                  letterSpacing: '0.28em',
+                  textTransform: 'uppercase',
+                  color: 'var(--mauve)',
+                  fontWeight: 400,
+                  marginBottom: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}>
+                  <span style={{ display: 'inline-block', width: '14px', height: '0.5px', background: 'var(--mauve-light)' }} />
+                  Hedessent.ca
+                </div>
+                <div style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontSize: '26px',
+                  fontWeight: 400,
+                  color: 'var(--text-dark)',
+                  lineHeight: 1.2,
+                  marginBottom: '10px',
+                }}>
+                  {item.name}
+                </div>
+                <p style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: '13px',
+                  color: 'var(--text-mid)',
+                  fontWeight: 300,
+                  lineHeight: 1.7,
+                  marginBottom: '20px',
+                }}>
+                  {item.desc}
+                </p>
+                <span style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: '9px',
+                  letterSpacing: '0.22em',
+                  textTransform: 'uppercase',
+                  color: 'var(--plum)',
+                  fontWeight: 400,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}>
+                  Read the feature →
+                </span>
+              </div>
+            </a>
           ))}
         </div>
       </section>
