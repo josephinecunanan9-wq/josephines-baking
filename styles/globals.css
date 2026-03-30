@@ -91,7 +91,7 @@ a {
 }
 
 .btn-ghost::after {
-  content: '→';
+  content: 'â†’';
   font-size: 14px;
   color: var(--plum);
 }
@@ -305,24 +305,27 @@ a {
 }
 
 .sec-link::after {
-  content: '→';
+  content: 'â†’';
   font-size: 11px;
   color: var(--plum);
 }
 
-/* RECIPE CARD */
+/* PLUM GLOW SHADOW SYSTEM */
 .recipe-card {
   background: var(--warm-white);
   border: 0.5px solid var(--border-m);
+  box-shadow: 0 8px 32px rgba(113,12,33,0.08);
   overflow: hidden;
   cursor: pointer;
   display: block;
   text-decoration: none;
-  transition: border-color 0.2s;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .recipe-card:hover {
   border-color: var(--mauve-light);
+  box-shadow: 0 12px 40px rgba(113,12,33,0.14);
+  transform: translateY(-3px);
 }
 
 .recipe-card-img {
