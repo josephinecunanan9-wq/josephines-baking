@@ -112,7 +112,6 @@ function BakingIcon({ type, size = 28, colorIdx = 0 }) {
   return icons[type] || icons.cookie
 }
 
-// Icon clusters between each horizontal photo (3–6 icons each)
 const H_CLUSTER_POSITIONS = [
   [
     { top: '-14px', left: '4px', rotate: -18, size: 26, colorIdx: 0 },
@@ -165,7 +164,6 @@ const H_CLUSTER_POSITIONS = [
   ],
 ]
 
-// Icons overlapping each horizontal photo
 const H_PHOTO_OVERLAYS = [
   [{ top: '-10px', left: '-8px', rotate: -12, size: 24, colorIdx: 0 }],
   [{ top: '-8px', right: '-6px', rotate: 14, size: 20, colorIdx: 2 }, { bottom: '-10px', left: '20px', rotate: -8, size: 18, colorIdx: 1 }],
@@ -177,7 +175,6 @@ const H_PHOTO_OVERLAYS = [
   [{ bottom: '-8px', left: '-6px', rotate: 16, size: 24, colorIdx: 0 }, { top: '-10px', right: '-8px', rotate: -18, size: 18, colorIdx: 1 }],
 ]
 
-// Icons scattered around each vertical portrait photo
 const V_PHOTO_OVERLAYS = [
   [
     { top: '-14px', left: '-12px', rotate: -15, size: 30, colorIdx: 0 },
@@ -241,7 +238,7 @@ export function HorizontalPhotoMarquee() {
       background: 'var(--mauve-pale)',
       padding: '28px 0',
     }}>
-      {/* Soft fade edges — all 4 sides dissolve into surrounding cream */}
+      {/* Soft fade — all 4 edges into cream */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '32px', background: 'linear-gradient(to bottom, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '32px', background: 'linear-gradient(to top, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', top: 0, left: 0, width: '80px', height: '100%', background: 'linear-gradient(to right, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
@@ -264,7 +261,7 @@ export function HorizontalPhotoMarquee() {
 
           return (
             <div key={i} style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-              {/* Photo with white brightness overlay + overlapping icons */}
+              {/* Photo — no white overlay */}
               <div style={{ position: 'relative', flexShrink: 0, margin: '0 4px' }}>
                 <div style={{
                   width: '112px',
@@ -278,7 +275,6 @@ export function HorizontalPhotoMarquee() {
                     alt={photo.alt}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
-                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(255,255,255,0.18)', pointerEvents: 'none' }} />
                 </div>
                 {overlays.map((ov, j) => (
                   <div
@@ -346,11 +342,12 @@ export function VerticalPhotoMarquee() {
       height: '640px',
       background: 'var(--mauve-pale)',
     }}>
-      {/* Soft fade edges — all 4 sides dissolve into surrounding warm-white */}
+      {/* Top/bottom fade into warm-white */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '60px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '60px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '28px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: 0, right: 0, width: '28px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+      {/* Side fades — trimmed to ~16px, just a soft dissolve not a thick border */}
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '16px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: 0, right: 0, width: '16px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
 
       <div style={{
         display: 'flex',
@@ -375,6 +372,7 @@ export function VerticalPhotoMarquee() {
                 margin: '0 auto',
               }}
             >
+              {/* Photo — no white overlay */}
               <div style={{
                 width: '189px',
                 height: '252px',
@@ -387,7 +385,6 @@ export function VerticalPhotoMarquee() {
                   alt={photo.alt}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                <div style={{ position: 'absolute', inset: 0, background: 'rgba(255,255,255,0.18)', pointerEvents: 'none' }} />
               </div>
               {overlays.map((ov, j) => (
                 <div
