@@ -4,6 +4,7 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Marquee from '../components/Marquee'
 import RecipeCard from '../components/RecipeCard'
+import { HorizontalPhotoMarquee } from '../components/PhotoMarquee'
 import { getAllRecipes, getAllCategories } from '../lib/recipes'
 
 const CATEGORIES = [
@@ -220,6 +221,9 @@ export default function Home({ featured, recent, categories }) {
           ))}
         </div>
       </section>
+
+      {/* PHOTO MARQUEE — horizontal, east to west */}
+      <HorizontalPhotoMarquee />
 
       {/* ABOUT SECTION */}
       <section style={{
@@ -452,7 +456,7 @@ export default function Home({ featured, recent, categories }) {
                   alignItems: 'center',
                   gap: '8px',
                 }}>
-                  Read the feature →
+                  Read the feature &#8594;
                 </span>
               </div>
             </a>
