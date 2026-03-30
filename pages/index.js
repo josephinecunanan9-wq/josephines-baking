@@ -2,10 +2,10 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import Marquee from '../components/Marquee'
+import Newsletter from '../components/Newsletter'
 import RecipeCard from '../components/RecipeCard'
 import { HorizontalPhotoMarquee } from '../components/PhotoMarquee'
-import { getAllRecipes, getAllCategories } from '../lib/recipes'
+import { getAllRecipes } from '../lib/recipes'
 
 const CATEGORIES = [
   'Cookies', 'Cakes', 'Muffins', 'Bars & Brownies',
@@ -13,7 +13,7 @@ const CATEGORIES = [
   'Danishes', 'Frostings', 'Cinnamon Rolls',
 ]
 
-export default function Home({ featured, recent, categories }) {
+export default function Home({ featured, recent }) {
   return (
     <>
       <Head>
@@ -51,7 +51,6 @@ export default function Home({ featured, recent, categories }) {
             <span style={{ display: 'block', width: '28px', height: '0.5px', background: 'var(--mauve-light)' }} />
             Welcome
           </div>
-
           <h1 style={{
             fontSize: '34px',
             fontWeight: 300,
@@ -63,7 +62,6 @@ export default function Home({ featured, recent, categories }) {
             Hi, I&apos;m Josephine, a self-taught baker who learned everything by{' '}
             <em style={{ fontStyle: 'italic', color: 'var(--plum)' }}>just starting.</em>
           </h1>
-
           <span style={{
             fontFamily: "'Alex Brush', cursive",
             fontSize: '46px',
@@ -74,7 +72,6 @@ export default function Home({ featured, recent, categories }) {
           }}>
             this is where I share what I loved along the way
           </span>
-
           <p style={{
             fontSize: '15px',
             color: 'var(--text-mid)',
@@ -86,7 +83,6 @@ export default function Home({ featured, recent, categories }) {
           }}>
             Every recipe started with curiosity and ended up in the oven. Bake something with me.
           </p>
-
           <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
             <Link href="/recipes" className="btn-primary">Browse Recipes</Link>
             <Link href="/recipes?sort=popular" className="btn-ghost">What&apos;s popular</Link>
@@ -135,9 +131,6 @@ export default function Home({ featured, recent, categories }) {
           </Link>
         ))}
       </div>
-
-      {/* MARQUEE */}
-      <Marquee />
 
       {/* FEATURED RECIPES */}
       <section className="section" style={{ background: 'var(--cream)' }}>
@@ -220,10 +213,10 @@ export default function Home({ featured, recent, categories }) {
         </div>
       </section>
 
-      {/* PHOTO MARQUEE — horizontal, east to west */}
+      {/* PHOTO MARQUEE */}
       <HorizontalPhotoMarquee />
 
-      {/* ABOUT SECTION — centered text, full-width blush, no dead right space */}
+      {/* ABOUT SECTION */}
       <section style={{
         background: 'var(--blush)',
         borderTop: '0.5px solid var(--border-m)',
@@ -275,7 +268,7 @@ export default function Home({ featured, recent, categories }) {
             <div className="sec-label">Keep exploring</div>
             <div className="sec-title">more to make</div>
           </div>
-          <Link href="/recipes" className="sec-link">See all 205</Link>
+          <Link href="/recipes" className="sec-link">See all</Link>
         </div>
         <div className="recipe-grid">
           {recent.slice(0, 6).map((recipe) => (
@@ -334,21 +327,20 @@ export default function Home({ featured, recent, categories }) {
             Hedessent.ca
           </div>
         </div>
-
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {[
             {
               href: 'https://hedessent.ca/dessert-recipes/peppermint-macarons/',
               slug: 'peppermint-macarons',
               name: 'Peppermint Macarons',
-              desc: 'My peppermint macaron recipe featured in Hedessent\'s dessert collection, made with their Peppermint Flavour Drops.',
+              desc: "My peppermint macaron recipe featured in Hedessent's dessert collection, made with their Peppermint Flavour Drops.",
               img: 'https://static.wixstatic.com/media/b3c1ed_526061a867174bc49e3da3f7e4f70c0d~mv2.jpg',
             },
             {
               href: 'https://hedessent.ca/dessert-recipes/passion-fruit-fudge/',
               slug: 'white-chocolate-passionfruit-fudge',
               name: 'White Chocolate Passionfruit Fudge',
-              desc: 'My white chocolate passionfruit fudge featured in Hedessent\'s dessert collection, made with their Passionfruit Flavour Drops.',
+              desc: "My white chocolate passionfruit fudge featured in Hedessent's dessert collection, made with their Passionfruit Flavour Drops.",
               img: 'https://static.wixstatic.com/media/b3c1ed_76bf153b93e947aebba9233bbc31a74c~mv2.jpg',
             },
           ].map((item) => (
@@ -377,176 +369,48 @@ export default function Home({ featured, recent, categories }) {
               }}
             >
               <div style={{ height: '200px', overflow: 'hidden', background: 'var(--blush)', position: 'relative' }}>
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
+                <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <span style={{
-                  position: 'absolute',
-                  top: '12px',
-                  left: '12px',
-                  background: 'var(--plum)',
-                  color: '#fff',
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: '7px',
-                  letterSpacing: '0.24em',
-                  textTransform: 'uppercase',
-                  padding: '4px 9px',
-                  fontWeight: 400,
-                }}>
-                  Featured Recipe
-                </span>
+                  position: 'absolute', top: '12px', left: '12px',
+                  background: 'var(--plum)', color: '#fff',
+                  fontFamily: "'Jost', sans-serif", fontSize: '7px',
+                  letterSpacing: '0.24em', textTransform: 'uppercase',
+                  padding: '4px 9px', fontWeight: 400,
+                }}>Featured Recipe</span>
               </div>
               <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: '8px',
-                  letterSpacing: '0.28em',
-                  textTransform: 'uppercase',
-                  color: 'var(--mauve)',
-                  fontWeight: 400,
-                  marginBottom: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
+                  fontFamily: "'Jost', sans-serif", fontSize: '8px',
+                  letterSpacing: '0.28em', textTransform: 'uppercase',
+                  color: 'var(--mauve)', fontWeight: 400, marginBottom: '10px',
+                  display: 'flex', alignItems: 'center', gap: '8px',
                 }}>
                   <span style={{ display: 'inline-block', width: '14px', height: '0.5px', background: 'var(--mauve-light)' }} />
                   Hedessent.ca
                 </div>
                 <div style={{
                   fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontSize: '26px',
-                  fontWeight: 400,
-                  color: 'var(--text-dark)',
-                  lineHeight: 1.2,
-                  marginBottom: '10px',
-                }}>
-                  {item.name}
-                </div>
+                  fontSize: '26px', fontWeight: 400, color: 'var(--text-dark)',
+                  lineHeight: 1.2, marginBottom: '10px',
+                }}>{item.name}</div>
                 <p style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: '13px',
-                  color: 'var(--text-mid)',
-                  fontWeight: 300,
-                  lineHeight: 1.7,
-                  marginBottom: '20px',
-                }}>
-                  {item.desc}
-                </p>
+                  fontFamily: "'Jost', sans-serif", fontSize: '13px',
+                  color: 'var(--text-mid)', fontWeight: 300,
+                  lineHeight: 1.7, marginBottom: '20px',
+                }}>{item.desc}</p>
                 <span style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: '9px',
-                  letterSpacing: '0.22em',
-                  textTransform: 'uppercase',
-                  color: 'var(--plum)',
-                  fontWeight: 400,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                }}>
-                  Read the feature &#8594;
-                </span>
+                  fontFamily: "'Jost', sans-serif", fontSize: '9px',
+                  letterSpacing: '0.22em', textTransform: 'uppercase',
+                  color: 'var(--plum)', fontWeight: 400,
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                }}>Read the feature &#8594;</span>
               </div>
             </a>
           ))}
         </div>
       </section>
 
-      {/* NEWSLETTER */}
-      <section style={{
-        background: 'var(--plum-deep)',
-        padding: '72px 40px',
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          fontFamily: "'Alex Brush', cursive",
-          fontSize: '200px',
-          color: 'rgba(255,255,255,0.025)',
-          whiteSpace: 'nowrap',
-          pointerEvents: 'none',
-          lineHeight: 1,
-        }}>
-          baking
-        </div>
-        <span style={{
-          fontFamily: "'Jost', sans-serif",
-          fontSize: '9px',
-          letterSpacing: '0.3em',
-          textTransform: 'uppercase',
-          color: 'rgba(255,255,255,0.3)',
-          marginBottom: '16px',
-          fontWeight: 400,
-          display: 'block',
-          position: 'relative',
-        }}>
-          Stay in the loop
-        </span>
-        <h2 style={{
-          fontSize: '44px',
-          fontWeight: 300,
-          color: '#fff',
-          letterSpacing: '-0.01em',
-          marginBottom: '10px',
-          position: 'relative',
-        }}>
-          New recipes, <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.45)' }}>weekly.</em>
-        </h2>
-        <p style={{
-          fontFamily: "'Jost', sans-serif",
-          fontSize: '13px',
-          color: 'rgba(255,255,255,0.35)',
-          fontWeight: 300,
-          marginBottom: '36px',
-          position: 'relative',
-        }}>
-          No spam. No stories. Just the recipe.
-        </p>
-        <form
-          style={{ display: 'flex', maxWidth: '420px', margin: '0 auto', position: 'relative' }}
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <input
-            type="email"
-            placeholder="your@email.com"
-            style={{
-              flex: 1,
-              padding: '13px 18px',
-              background: 'rgba(255,255,255,0.06)',
-              border: '0.5px solid rgba(255,255,255,0.15)',
-              color: '#fff',
-              fontFamily: "'Jost', sans-serif",
-              fontSize: '13px',
-              outline: 'none',
-              fontWeight: 300,
-            }}
-          />
-          <button
-            type="submit"
-            style={{
-              padding: '13px 22px',
-              background: 'var(--plum)',
-              color: 'rgba(255,255,255,0.9)',
-              border: 'none',
-              fontFamily: "'Jost', sans-serif",
-              fontSize: '9px',
-              letterSpacing: '0.24em',
-              textTransform: 'uppercase',
-              cursor: 'pointer',
-              fontWeight: 400,
-            }}
-          >
-            Subscribe
-          </button>
-        </form>
-      </section>
-
+      <Newsletter />
       <Footer />
     </>
   )
@@ -560,10 +424,8 @@ export async function getStaticProps() {
     const dateB = b.publishDate ? new Date(b.publishDate) : new Date(0)
     return dateB - dateA
   })
-  const featured = sorted.slice(0, 4)
-  const recent = sorted.slice(4, 10)
   return {
-    props: { featured, recent },
+    props: { featured: sorted.slice(0, 4), recent: sorted.slice(4, 10) },
     revalidate: 3600,
   }
 }
