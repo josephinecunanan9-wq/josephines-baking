@@ -225,7 +225,48 @@ export default function Home({ featured, recent, categories }) {
       {/* PHOTO MARQUEE — horizontal, east to west */}
       <HorizontalPhotoMarquee />
 
-     {/* ABOUT SECTION */}
+      {/* ABOUT SECTION */}
+      <section style={{
+        background: 'var(--blush)',
+        borderTop: '0.5px solid var(--border-m)',
+        borderBottom: '0.5px solid var(--border-m)',
+        padding: '80px 40px',
+      }}>
+        <div style={{ maxWidth: '620px' }}>
+          <div style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: '9px',
+            letterSpacing: '0.32em',
+            textTransform: 'uppercase',
+            color: 'var(--plum)',
+            fontWeight: 400,
+            marginBottom: '12px',
+          }}>
+            A little about me
+          </div>
+          <span style={{
+            fontFamily: "'Alex Brush', cursive",
+            fontSize: '52px',
+            color: 'var(--text-dark)',
+            lineHeight: 1,
+            marginBottom: '24px',
+            display: 'block',
+          }}>
+            Hi, I&apos;m Josephine
+          </span>
+          <div style={{ fontSize: '17px', fontWeight: 300, lineHeight: 1.9, color: 'var(--text-mid)' }}>
+            <p style={{ marginBottom: '18px' }}>
+              I&apos;m a self-taught baker, content creator, and full-time dessert enthusiast. I started baking at home out of comfort and curiosity, and somewhere between the failed first attempts and the recipes that actually worked, it became my favorite activity.
+            </p>
+            <p>
+              Every recipe on this site is something I tweaked, tested, and documented myself. I love seasonal ingredients, brown butter, and finding new ways to make classic things feel exciting again. I&apos;m still learning with every bake, and I think that&apos;s kind of the point. 🤷‍♀️
+            </p>
+          </div>
+          <Link href="/about" className="btn-ghost" style={{ marginTop: '32px', display: 'inline-flex' }}>
+            More about me
+          </Link>
+        </div>
+      </section>
 
       {/* MORE RECIPES */}
       <section className="section" style={{ background: 'var(--warm-white)' }}>
@@ -516,17 +557,13 @@ export async function getStaticProps() {
 
   const published = allRecipes.filter(r => r.title && r.slug && r.coverImage)
 
-  // Sort by publish date descending so newest recipes appear first
   const sorted = published.sort((a, b) => {
     const dateA = a.publishDate ? new Date(a.publishDate) : new Date(0)
     const dateB = b.publishDate ? new Date(b.publishDate) : new Date(0)
     return dateB - dateA
   })
 
-  // Featured: 4 most recent with cover images
   const featured = sorted.slice(0, 4)
-
-  // Recent: next 6 after featured
   const recent = sorted.slice(4, 10)
 
   return {
