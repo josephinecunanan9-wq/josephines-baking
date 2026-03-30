@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import Newsletter from '../components/Newsletter'
 import { VerticalPhotoMarquee } from '../components/PhotoMarquee'
 
 export default function About() {
@@ -11,9 +12,7 @@ export default function About() {
         <title>About | Josephine&apos;s Baking</title>
         <meta name="description" content="Hi, I'm Josephine. A self-taught baker, content creator, and full-time dessert enthusiast sharing tested recipes from scratch." />
       </Head>
-
       <Nav />
-
       <main>
         <section style={{
           background: 'var(--warm-white)',
@@ -62,12 +61,10 @@ export default function About() {
               Browse all recipes
             </Link>
           </div>
-
-          {/* VERTICAL PHOTO MARQUEE — north to south */}
           <VerticalPhotoMarquee />
         </section>
       </main>
-
+      <Newsletter />
       <Footer />
     </>
   )
