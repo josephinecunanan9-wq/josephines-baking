@@ -27,7 +27,7 @@ export default function RecipesIndex({ recipes }) {
         r.title?.toLowerCase().includes(q) ||
         r.category?.toLowerCase().includes(q) ||
         r.seoDescription?.toLowerCase().includes(q) ||
-        r.tags?.toLowerCase().includes(q)
+        (Array.isArray(r.tags) ? r.tags.some(t => t?.toLowerCase().includes(q)) : r.tags?.toLowerCase?.().includes(q))
       )
     }
     return result
