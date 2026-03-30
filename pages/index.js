@@ -149,7 +149,6 @@ export default function Home({ featured, recent, categories }) {
           <Link href="/recipes" className="sec-link">All recipes</Link>
         </div>
 
-        {/* Big feature card */}
         {featured[0] && (
           <Link
             href={`/recipes/${featured[0].slug}`}
@@ -214,7 +213,6 @@ export default function Home({ featured, recent, categories }) {
           </Link>
         )}
 
-        {/* 3-card grid */}
         <div className="recipe-grid">
           {featured.slice(1, 4).map((recipe) => (
             <RecipeCard key={recipe.slug} recipe={recipe} />
@@ -225,14 +223,16 @@ export default function Home({ featured, recent, categories }) {
       {/* PHOTO MARQUEE — horizontal, east to west */}
       <HorizontalPhotoMarquee />
 
-      {/* ABOUT SECTION */}
+      {/* ABOUT SECTION — centered text, full-width blush, no dead right space */}
       <section style={{
         background: 'var(--blush)',
         borderTop: '0.5px solid var(--border-m)',
         borderBottom: '0.5px solid var(--border-m)',
         padding: '80px 40px',
+        display: 'flex',
+        justifyContent: 'center',
       }}>
-        <div style={{ maxWidth: '620px' }}>
+        <div style={{ maxWidth: '620px', width: '100%' }}>
           <div style={{
             fontFamily: "'Jost', sans-serif",
             fontSize: '9px',
@@ -554,18 +554,14 @@ export default function Home({ featured, recent, categories }) {
 
 export async function getStaticProps() {
   const allRecipes = await getAllRecipes()
-
   const published = allRecipes.filter(r => r.title && r.slug && r.coverImage)
-
   const sorted = published.sort((a, b) => {
     const dateA = a.publishDate ? new Date(a.publishDate) : new Date(0)
     const dateB = b.publishDate ? new Date(b.publishDate) : new Date(0)
     return dateB - dateA
   })
-
   const featured = sorted.slice(0, 4)
   const recent = sorted.slice(4, 10)
-
   return {
     props: { featured, recent },
     revalidate: 3600,
