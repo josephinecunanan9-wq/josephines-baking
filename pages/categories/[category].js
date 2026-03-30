@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import Newsletter from '../../components/Newsletter'
 import RecipeCard from '../../components/RecipeCard'
 import { getAllRecipes } from '../../lib/recipes'
 
@@ -31,9 +32,7 @@ export default function CategoryPage({ category, recipes }) {
         <title>{category} Recipes | Josephine&apos;s Baking</title>
         <meta name="description" content={`Browse all ${category.toLowerCase()} recipes from Josephine's Baking. Homemade, tested, and straightforward.`} />
       </Head>
-
       <Nav />
-
       <div style={{
         background: 'var(--warm-white)',
         padding: '56px 40px 48px',
@@ -69,7 +68,6 @@ export default function CategoryPage({ category, recipes }) {
           {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'}
         </p>
       </div>
-
       <section className="section" style={{ background: 'var(--cream)' }}>
         <div style={{
           display: 'grid',
@@ -81,7 +79,7 @@ export default function CategoryPage({ category, recipes }) {
           ))}
         </div>
       </section>
-
+      <Newsletter />
       <Footer />
     </>
   )
@@ -97,10 +95,8 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const categoryName = CATEGORY_SLUGS[params.category]
   if (!categoryName) return { notFound: true }
-
   const allRecipes = await getAllRecipes()
   const recipes = allRecipes.filter(r => r.category === categoryName && r.slug)
-
   return {
     props: { category: categoryName, recipes },
     revalidate: 3600,
