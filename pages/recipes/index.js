@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
+import Newsletter from '../../components/Newsletter'
 import RecipeCard from '../../components/RecipeCard'
 import { getAllRecipes } from '../../lib/recipes'
 
@@ -105,13 +106,8 @@ export default function RecipesIndex({ recipes }) {
               <button
                 onClick={() => setQuery('')}
                 style={{
-                  padding: '0 14px',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  color: 'var(--mauve)',
-                  fontSize: '18px',
-                  lineHeight: 1,
+                  padding: '0 14px', background: 'none', border: 'none',
+                  cursor: 'pointer', color: 'var(--mauve)', fontSize: '18px', lineHeight: 1,
                 }}
               >
                 ×
@@ -140,17 +136,17 @@ export default function RecipesIndex({ recipes }) {
           </div>
         ) : (
           <div style={{
-            textAlign: 'center',
-            padding: '80px 40px',
-            color: 'var(--text-mid)',
-            fontFamily: "'Jost', sans-serif",
-            fontSize: '14px',
-            letterSpacing: '0.06em',
+            textAlign: 'center', padding: '80px 40px',
+            color: 'var(--text-mid)', fontFamily: "'Jost', sans-serif",
+            fontSize: '14px', letterSpacing: '0.06em',
           }}>
             No recipes found for &ldquo;{query}&rdquo;. Try a different search.
           </div>
         )}
       </section>
+
+      <Newsletter />
+      <Footer />
     </>
   )
 }
@@ -164,8 +160,5 @@ export async function getStaticProps() {
       const dateB = b.publishDate ? new Date(b.publishDate) : new Date(0)
       return dateB - dateA
     })
-  return {
-    props: { recipes },
-    revalidate: 3600,
-  }
+  return { props: { recipes }, revalidate: 3600 }
 }
