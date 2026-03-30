@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import Newsletter from '../../components/Newsletter'
 
 const CATEGORIES = [
   { name: 'Cookies', slug: 'cookies', emoji: '🍪' },
@@ -30,9 +31,7 @@ export default function CategoriesIndex() {
         <title>Recipe Categories | Josephine&apos;s Baking</title>
         <meta name="description" content="Browse recipes by category. Cookies, cakes, brownies, muffins, breads, donuts and more from Josephine's Baking." />
       </Head>
-
       <Nav />
-
       <div style={{
         background: 'var(--warm-white)',
         padding: '56px 40px 48px',
@@ -59,7 +58,6 @@ export default function CategoriesIndex() {
           Categories
         </h1>
       </div>
-
       <section style={{ padding: '64px 40px', background: 'var(--cream)' }}>
         <div style={{
           display: 'grid',
@@ -104,7 +102,7 @@ export default function CategoriesIndex() {
           ))}
         </div>
       </section>
-
+      <Newsletter />
       <Footer />
     </>
   )
