@@ -91,7 +91,7 @@ a {
 }
 
 .btn-ghost::after {
-  content: 'â†’';
+  content: '\2192';
   font-size: 14px;
   color: var(--plum);
 }
@@ -305,7 +305,7 @@ a {
 }
 
 .sec-link::after {
-  content: 'â†’';
+  content: '\2192';
   font-size: 11px;
   color: var(--plum);
 }
