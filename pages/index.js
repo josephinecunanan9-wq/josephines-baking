@@ -85,13 +85,13 @@ export default function Home({ featured, recent }) {
           }}>
             Every recipe started with curiosity and ended up in the oven. Bake something with me.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
             <Link href="/recipes" className="btn-primary">Browse Recipes</Link>
             <Link href="/recipes?sort=popular" className="btn-ghost">What&apos;s popular</Link>
           </div>
         </div>
 
-        {/* Hero photos — Persian Plum shadow added */}
+        {/* Hero photos — Persian Plum shadow + parallax on desktop */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
@@ -104,23 +104,59 @@ export default function Home({ featured, recent }) {
               href={`/recipes/${recipe.slug}`}
               style={{
                 gridRow: i === 0 ? '1 / 3' : 'auto',
-                background: 'var(--blush)',
                 overflow: 'hidden',
                 display: 'block',
                 boxShadow: PLUM_SHADOW,
+                position: 'relative',
               }}
             >
               {recipe.coverImage && (
-                <img
-                  src={recipe.coverImage}
-                  alt={recipe.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundImage: `url(${recipe.coverImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  // Parallax: only on non-touch devices; gracefully ignored on iOS
+                  backgroundAttachment: 'local',
+                  transition: 'transform 0.4s ease',
+                }}
+                  className="hero-parallax-img"
                 />
               )}
             </Link>
           ))}
         </div>
       </section>
+
+      {/* Parallax CSS — desktop only, gracefully degraded */}
+      <style>{`
+        @media (hover: hover) and (min-width: 769px) {
+          .hero-parallax-img {
+            background-attachment: fixed !important;
+            background-size: cover !important;
+          }
+          a:hover .hero-parallax-img {
+            transform: scale(1.03);
+          }
+        }
+        @media (max-width: 768px) {
+          .hero-section {
+            grid-template-columns: 1fr !important;
+            padding: 48px 20px 40px !important;
+            gap: 32px !important;
+          }
+          .hero-section h1 {
+            font-size: 26px !important;
+          }
+          .hero-section .hero-script {
+            font-size: 34px !important;
+          }
+          .hero-photos {
+            grid-template-rows: 160px 160px !important;
+          }
+        }
+      `}</style>
 
       {/* CATEGORY STRIP */}
       <div className="cat-strip">
@@ -146,10 +182,10 @@ export default function Home({ featured, recent }) {
           <Link href="/recipes" className="sec-link">All recipes</Link>
         </div>
 
-        {/* Big feature card — Persian Plum shadow added */}
         {featured[0] && (
           <Link
             href={`/recipes/${featured[0].slug}`}
+            className="featured-card"
             style={{
               display: 'grid',
               gridTemplateColumns: '1.15fr 1fr',
@@ -219,68 +255,158 @@ export default function Home({ featured, recent }) {
         </div>
       </section>
 
-      {/* PHOTO MARQUEE — split, flanking about me text */}
+      {/* SPLIT MARQUEE + ABOUT ME
+          Desktop: 3-col grid — left marquee | text | right marquee
+          Mobile: stacked — text on top, single marquee strip below */}
       <section style={{
-        background: 'var(--blush)',
+        background: 'var(--warm-white)',
         borderTop: '0.5px solid var(--border-m)',
         borderBottom: '0.5px solid var(--border-m)',
-        display: 'grid',
-        gridTemplateColumns: '1fr 600px 1fr',
-        minHeight: '340px',
-        overflow: 'hidden',
       }}>
-        {/* LEFT MARQUEE STRIP */}
-        <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', display: 'flex', alignItems: 'center' }}>
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--blush), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--blush), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-          <HorizontalPhotoMarquee inline />
+        {/* Desktop layout */}
+        <div className="about-split-desktop">
+          {/* LEFT MARQUEE */}
+          <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '40px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '40px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <HorizontalPhotoMarquee inline />
+          </div>
+
+          {/* ABOUT ME TEXT */}
+          <div style={{ padding: '72px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--warm-white)' }}>
+            <div style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: '11px',
+              letterSpacing: '0.32em',
+              textTransform: 'uppercase',
+              color: 'var(--plum)',
+              fontWeight: 400,
+              marginBottom: '12px',
+            }}>
+              A little about me
+            </div>
+            <span style={{
+              fontFamily: "'Alex Brush', cursive",
+              fontSize: '52px',
+              color: 'var(--text-dark)',
+              lineHeight: 1,
+              marginBottom: '24px',
+              display: 'block',
+            }}>
+              Hi, I&apos;m Josephine
+            </span>
+            <div style={{ fontSize: '17px', fontWeight: 300, lineHeight: 1.9, color: 'var(--text-mid)' }}>
+              <p style={{ marginBottom: '18px' }}>
+                I&apos;m a self-taught baker, content creator, and full-time dessert enthusiast. I started baking at home out of comfort and curiosity, and somewhere between the failed first attempts and the recipes that actually worked, it became my favorite activity.
+              </p>
+              <p>
+                Every recipe on this site is something I tweaked, tested, and documented myself. I love seasonal ingredients, brown butter, and finding new ways to make classic things feel exciting again. I&apos;m still learning with every bake, and I think that&apos;s kind of the point. 🤷‍♀️
+              </p>
+            </div>
+            <Link href="/about" className="btn-ghost" style={{ marginTop: '32px', display: 'inline-flex' }}>
+              More about me
+            </Link>
+          </div>
+
+          {/* RIGHT MARQUEE */}
+          <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '40px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '40px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <HorizontalPhotoMarquee inline />
+          </div>
         </div>
 
-        {/* ABOUT ME TEXT */}
-        <div style={{ padding: '72px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--blush)' }}>
-          <div style={{
-            fontFamily: "'Jost', sans-serif",
-            fontSize: '11px',
-            letterSpacing: '0.32em',
-            textTransform: 'uppercase',
-            color: 'var(--plum)',
-            fontWeight: 400,
-            marginBottom: '12px',
-          }}>
-            A little about me
+        {/* Mobile layout — text then single marquee strip */}
+        <div className="about-split-mobile">
+          <div style={{ padding: '48px 20px 40px', background: 'var(--warm-white)' }}>
+            <div style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: '11px',
+              letterSpacing: '0.32em',
+              textTransform: 'uppercase',
+              color: 'var(--plum)',
+              fontWeight: 400,
+              marginBottom: '12px',
+            }}>
+              A little about me
+            </div>
+            <span style={{
+              fontFamily: "'Alex Brush', cursive",
+              fontSize: '44px',
+              color: 'var(--text-dark)',
+              lineHeight: 1,
+              marginBottom: '20px',
+              display: 'block',
+            }}>
+              Hi, I&apos;m Josephine
+            </span>
+            <div style={{ fontSize: '16px', fontWeight: 300, lineHeight: 1.85, color: 'var(--text-mid)' }}>
+              <p style={{ marginBottom: '16px' }}>
+                I&apos;m a self-taught baker, content creator, and full-time dessert enthusiast. I started baking at home out of comfort and curiosity, and somewhere between the failed first attempts and the recipes that actually worked, it became my favorite activity.
+              </p>
+              <p>
+                Every recipe on this site is something I tweaked, tested, and documented myself. I love seasonal ingredients, brown butter, and finding new ways to make classic things feel exciting again. I&apos;m still learning with every bake, and I think that&apos;s kind of the point. 🤷‍♀️
+              </p>
+            </div>
+            <Link href="/about" className="btn-ghost" style={{ marginTop: '28px', display: 'inline-flex' }}>
+              More about me
+            </Link>
           </div>
-          <span style={{
-            fontFamily: "'Alex Brush', cursive",
-            fontSize: '52px',
-            color: 'var(--text-dark)',
-            lineHeight: 1,
-            marginBottom: '24px',
-            display: 'block',
-          }}>
-            Hi, I&apos;m Josephine
-          </span>
-          <div style={{ fontSize: '17px', fontWeight: 300, lineHeight: 1.9, color: 'var(--text-mid)' }}>
-            <p style={{ marginBottom: '18px' }}>
-              I&apos;m a self-taught baker, content creator, and full-time dessert enthusiast. I started baking at home out of comfort and curiosity, and somewhere between the failed first attempts and the recipes that actually worked, it became my favorite activity.
-            </p>
-            <p>
-              Every recipe on this site is something I tweaked, tested, and documented myself. I love seasonal ingredients, brown butter, and finding new ways to make classic things feel exciting again. I&apos;m still learning with every bake, and I think that&apos;s kind of the point. 🤷‍♀️
-            </p>
+          {/* Single marquee strip on mobile */}
+          <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', height: '180px', display: 'flex', alignItems: 'center' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '40px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, right: 0, width: '40px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <HorizontalPhotoMarquee inline />
           </div>
-          <Link href="/about" className="btn-ghost" style={{ marginTop: '32px', display: 'inline-flex' }}>
-            More about me
-          </Link>
-        </div>
-
-        {/* RIGHT MARQUEE STRIP */}
-        <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', display: 'flex', alignItems: 'center' }}>
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--blush), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--blush), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-          <HorizontalPhotoMarquee inline />
         </div>
       </section>
 
-      {/* FEATURED IN — moved directly under about me */}
+      <style>{`
+        /* Desktop split layout */
+        .about-split-desktop {
+          display: grid;
+          grid-template-columns: 1fr 680px 1fr;
+          min-height: 380px;
+        }
+        .about-split-mobile { display: none; }
+
+        /* Featured card mobile */
+        @media (max-width: 768px) {
+          .about-split-desktop { display: none; }
+          .about-split-mobile { display: block; }
+
+          .featured-card {
+            grid-template-columns: 1fr !important;
+          }
+          .featured-card > div:first-child {
+            height: 280px !important;
+          }
+          .featured-card > div:last-child {
+            padding: 28px 24px !important;
+          }
+          .featured-card h2 {
+            font-size: 24px !important;
+          }
+
+          /* Hero section */
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            padding: 40px 20px 36px !important;
+            gap: 32px !important;
+          }
+          .hero-grid h1 { font-size: 26px !important; line-height: 1.3 !important; }
+          .hero-script { font-size: 34px !important; }
+          .hero-photos {
+            grid-template-rows: 150px 150px !important;
+          }
+        }
+      `}</style>
+
+      {/* FEATURED IN */}
       <section style={{
         background: 'var(--warm-white)',
         borderTop: '0.5px solid var(--border-m)',
@@ -294,39 +420,18 @@ export default function Home({ featured, recent }) {
           marginBottom: '36px',
           paddingBottom: '16px',
           borderBottom: '0.5px solid var(--border-m)',
+          flexWrap: 'wrap',
+          gap: '16px',
         }}>
           <div>
-            <div style={{
-              fontFamily: "'Jost', sans-serif",
-              fontSize: '11px',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: 'var(--mauve)',
-              fontWeight: 400,
-              marginBottom: '3px',
-            }}>
+            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--mauve)', fontWeight: 400, marginBottom: '3px' }}>
               In the press
             </div>
-            <div style={{
-              fontFamily: "'Alex Brush', cursive",
-              fontSize: '44px',
-              color: 'var(--plum)',
-              lineHeight: 1,
-            }}>
+            <div style={{ fontFamily: "'Alex Brush', cursive", fontSize: '44px', color: 'var(--plum)', lineHeight: 1 }}>
               Featured In
             </div>
           </div>
-          <div style={{
-            fontFamily: "'Jost', sans-serif",
-            fontSize: '11px',
-            letterSpacing: '0.22em',
-            textTransform: 'uppercase',
-            color: 'var(--text-mid)',
-            border: '0.5px solid var(--border-m)',
-            padding: '8px 18px',
-            fontWeight: 400,
-            boxShadow: '0 8px 32px rgba(113,12,33,0.08)',
-          }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-mid)', border: '0.5px solid var(--border-m)', padding: '8px 18px', fontWeight: 400, boxShadow: '0 8px 32px rgba(113,12,33,0.08)' }}>
             Hedessent.ca
           </div>
         </div>
@@ -352,6 +457,7 @@ export default function Home({ featured, recent }) {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
+              className="featured-in-card"
               style={{
                 display: 'grid',
                 gridTemplateColumns: '280px 1fr',
@@ -362,55 +468,35 @@ export default function Home({ featured, recent }) {
                 overflow: 'hidden',
                 transition: 'box-shadow 0.3s, transform 0.3s',
               }}
-              onMouseEnter={e => {
-                e.currentTarget.style.boxShadow = '0 12px 40px rgba(113,12,33,0.14)'
-                e.currentTarget.style.transform = 'translateY(-2px)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(113,12,33,0.08)'
-                e.currentTarget.style.transform = 'translateY(0)'
-              }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 12px 40px rgba(113,12,33,0.14)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 8px 32px rgba(113,12,33,0.08)'; e.currentTarget.style.transform = 'translateY(0)' }}
             >
               <div style={{ height: '200px', overflow: 'hidden', background: 'var(--blush)', position: 'relative' }}>
                 <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                <span style={{
-                  position: 'absolute', top: '12px', left: '12px',
-                  background: 'var(--plum)', color: '#fff',
-                  fontFamily: "'Jost', sans-serif", fontSize: '11px',
-                  letterSpacing: '0.24em', textTransform: 'uppercase',
-                  padding: '4px 9px', fontWeight: 400,
-                }}>Featured Recipe</span>
+                <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'var(--plum)', color: '#fff', fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', padding: '4px 9px', fontWeight: 400 }}>Featured Recipe</span>
               </div>
               <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{
-                  fontFamily: "'Jost', sans-serif", fontSize: '11px',
-                  letterSpacing: '0.28em', textTransform: 'uppercase',
-                  color: 'var(--mauve)', fontWeight: 400, marginBottom: '10px',
-                  display: 'flex', alignItems: 'center', gap: '8px',
-                }}>
+                <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--mauve)', fontWeight: 400, marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span style={{ display: 'inline-block', width: '14px', height: '0.5px', background: 'var(--mauve-light)' }} />
                   Hedessent.ca
                 </div>
-                <div style={{
-                  fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontSize: '26px', fontWeight: 400, color: 'var(--text-dark)',
-                  lineHeight: 1.2, marginBottom: '10px',
-                }}>{item.name}</div>
-                <p style={{
-                  fontFamily: "'Jost', sans-serif", fontSize: '13px',
-                  color: 'var(--text-mid)', fontWeight: 300,
-                  lineHeight: 1.7, marginBottom: '20px',
-                }}>{item.desc}</p>
-                <span style={{
-                  fontFamily: "'Jost', sans-serif", fontSize: '11px',
-                  letterSpacing: '0.22em', textTransform: 'uppercase',
-                  color: 'var(--plum)', fontWeight: 400,
-                  display: 'inline-flex', alignItems: 'center', gap: '8px',
-                }}>Read the feature &#8594;</span>
+                <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '26px', fontWeight: 400, color: 'var(--text-dark)', lineHeight: 1.2, marginBottom: '10px' }}>{item.name}</div>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontSize: '13px', color: 'var(--text-mid)', fontWeight: 300, lineHeight: 1.7, marginBottom: '20px' }}>{item.desc}</p>
+                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--plum)', fontWeight: 400, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>Read the feature &#8594;</span>
               </div>
             </a>
           ))}
         </div>
+        <style>{`
+          @media (max-width: 768px) {
+            .featured-in-card {
+              grid-template-columns: 1fr !important;
+            }
+            .featured-in-card > div:first-child {
+              height: 200px !important;
+            }
+          }
+        `}</style>
       </section>
 
       {/* MORE RECIPES */}
