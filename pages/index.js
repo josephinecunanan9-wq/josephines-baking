@@ -13,6 +13,8 @@ const CATEGORIES = [
   'Danishes', 'Frostings', 'Cinnamon Rolls',
 ]
 
+const PLUM_SHADOW = '0 12px 40px rgba(113,12,33,0.22), 0 4px 16px rgba(113,12,33,0.12)'
+
 export default function Home({ featured, recent }) {
   return (
     <>
@@ -38,7 +40,7 @@ export default function Home({ featured, recent }) {
         <div>
           <div style={{
             fontFamily: "'Jost', sans-serif",
-            fontSize: '9px',
+            fontSize: '11px',
             letterSpacing: '0.32em',
             textTransform: 'uppercase',
             color: 'var(--mauve)',
@@ -89,6 +91,7 @@ export default function Home({ featured, recent }) {
           </div>
         </div>
 
+        {/* Hero photos — Persian Plum shadow added */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
@@ -104,6 +107,7 @@ export default function Home({ featured, recent }) {
                 background: 'var(--blush)',
                 overflow: 'hidden',
                 display: 'block',
+                boxShadow: PLUM_SHADOW,
               }}
             >
               {recipe.coverImage && (
@@ -142,6 +146,7 @@ export default function Home({ featured, recent }) {
           <Link href="/recipes" className="sec-link">All recipes</Link>
         </div>
 
+        {/* Big feature card — Persian Plum shadow added */}
         {featured[0] && (
           <Link
             href={`/recipes/${featured[0].slug}`}
@@ -152,6 +157,7 @@ export default function Home({ featured, recent }) {
               border: '0.5px solid var(--border-m)',
               marginBottom: '24px',
               textDecoration: 'none',
+              boxShadow: PLUM_SHADOW,
             }}
           >
             <div style={{ height: '440px', overflow: 'hidden', background: 'var(--blush)' }}>
@@ -171,7 +177,7 @@ export default function Home({ featured, recent }) {
             }}>
               <div style={{
                 fontFamily: "'Jost', sans-serif",
-                fontSize: '9px',
+                fontSize: '11px',
                 letterSpacing: '0.3em',
                 textTransform: 'uppercase',
                 color: 'var(--mauve)',
@@ -213,22 +219,28 @@ export default function Home({ featured, recent }) {
         </div>
       </section>
 
-      {/* PHOTO MARQUEE */}
-      <HorizontalPhotoMarquee />
-
-      {/* ABOUT SECTION */}
+      {/* PHOTO MARQUEE — split, flanking about me text */}
       <section style={{
         background: 'var(--blush)',
         borderTop: '0.5px solid var(--border-m)',
         borderBottom: '0.5px solid var(--border-m)',
-        padding: '80px 40px',
-        display: 'flex',
-        justifyContent: 'center',
+        display: 'grid',
+        gridTemplateColumns: '1fr 600px 1fr',
+        minHeight: '340px',
+        overflow: 'hidden',
       }}>
-        <div style={{ maxWidth: '620px', width: '100%' }}>
+        {/* LEFT MARQUEE STRIP */}
+        <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', display: 'flex', alignItems: 'center' }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--blush), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--blush), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+          <HorizontalPhotoMarquee inline />
+        </div>
+
+        {/* ABOUT ME TEXT */}
+        <div style={{ padding: '72px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--blush)' }}>
           <div style={{
             fontFamily: "'Jost', sans-serif",
-            fontSize: '9px',
+            fontSize: '11px',
             letterSpacing: '0.32em',
             textTransform: 'uppercase',
             color: 'var(--plum)',
@@ -259,25 +271,16 @@ export default function Home({ featured, recent }) {
             More about me
           </Link>
         </div>
-      </section>
 
-      {/* MORE RECIPES */}
-      <section className="section" style={{ background: 'var(--warm-white)' }}>
-        <div className="sec-head">
-          <div>
-            <div className="sec-label">Keep exploring</div>
-            <div className="sec-title">more to make</div>
-          </div>
-          <Link href="/recipes" className="sec-link">See all</Link>
-        </div>
-        <div className="recipe-grid">
-          {recent.slice(0, 6).map((recipe) => (
-            <RecipeCard key={recipe.slug} recipe={recipe} />
-          ))}
+        {/* RIGHT MARQUEE STRIP */}
+        <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', display: 'flex', alignItems: 'center' }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--blush), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--blush), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+          <HorizontalPhotoMarquee inline />
         </div>
       </section>
 
-      {/* FEATURED IN */}
+      {/* FEATURED IN — moved directly under about me */}
       <section style={{
         background: 'var(--warm-white)',
         borderTop: '0.5px solid var(--border-m)',
@@ -295,7 +298,7 @@ export default function Home({ featured, recent }) {
           <div>
             <div style={{
               fontFamily: "'Jost', sans-serif",
-              fontSize: '9px',
+              fontSize: '11px',
               letterSpacing: '0.28em',
               textTransform: 'uppercase',
               color: 'var(--mauve)',
@@ -315,7 +318,7 @@ export default function Home({ featured, recent }) {
           </div>
           <div style={{
             fontFamily: "'Jost', sans-serif",
-            fontSize: '9px',
+            fontSize: '11px',
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
             color: 'var(--text-mid)',
@@ -373,14 +376,14 @@ export default function Home({ featured, recent }) {
                 <span style={{
                   position: 'absolute', top: '12px', left: '12px',
                   background: 'var(--plum)', color: '#fff',
-                  fontFamily: "'Jost', sans-serif", fontSize: '7px',
+                  fontFamily: "'Jost', sans-serif", fontSize: '11px',
                   letterSpacing: '0.24em', textTransform: 'uppercase',
                   padding: '4px 9px', fontWeight: 400,
                 }}>Featured Recipe</span>
               </div>
               <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div style={{
-                  fontFamily: "'Jost', sans-serif", fontSize: '8px',
+                  fontFamily: "'Jost', sans-serif", fontSize: '11px',
                   letterSpacing: '0.28em', textTransform: 'uppercase',
                   color: 'var(--mauve)', fontWeight: 400, marginBottom: '10px',
                   display: 'flex', alignItems: 'center', gap: '8px',
@@ -399,13 +402,29 @@ export default function Home({ featured, recent }) {
                   lineHeight: 1.7, marginBottom: '20px',
                 }}>{item.desc}</p>
                 <span style={{
-                  fontFamily: "'Jost', sans-serif", fontSize: '9px',
+                  fontFamily: "'Jost', sans-serif", fontSize: '11px',
                   letterSpacing: '0.22em', textTransform: 'uppercase',
                   color: 'var(--plum)', fontWeight: 400,
                   display: 'inline-flex', alignItems: 'center', gap: '8px',
                 }}>Read the feature &#8594;</span>
               </div>
             </a>
+          ))}
+        </div>
+      </section>
+
+      {/* MORE RECIPES */}
+      <section className="section" style={{ background: 'var(--warm-white)' }}>
+        <div className="sec-head">
+          <div>
+            <div className="sec-label">Keep exploring</div>
+            <div className="sec-title">more to make</div>
+          </div>
+          <Link href="/recipes" className="sec-link">See all</Link>
+        </div>
+        <div className="recipe-grid">
+          {recent.slice(0, 6).map((recipe) => (
+            <RecipeCard key={recipe.slug} recipe={recipe} />
           ))}
         </div>
       </section>
