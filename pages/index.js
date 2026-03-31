@@ -27,17 +27,9 @@ export default function Home({ featured, recent }) {
 
       <Nav />
 
-      {/* HERO */}
-      <section style={{
-        background: 'var(--warm-white)',
-        padding: '80px 40px 90px',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '72px',
-        alignItems: 'center',
-        borderBottom: '0.5px solid var(--border-m)',
-      }}>
-        <div>
+      {/* ── HERO ── */}
+      <section className="hero-section">
+        <div className="hero-text">
           <div style={{
             fontFamily: "'Jost', sans-serif",
             fontSize: '11px',
@@ -91,37 +83,19 @@ export default function Home({ featured, recent }) {
           </div>
         </div>
 
-        {/* Hero photos — Persian Plum shadow + parallax on desktop */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gridTemplateRows: '210px 210px',
-          gap: '10px',
-        }}>
+        <div className="hero-photos">
           {featured.slice(0, 3).map((recipe, i) => (
             <Link
               key={recipe.slug}
               href={`/recipes/${recipe.slug}`}
-              style={{
-                gridRow: i === 0 ? '1 / 3' : 'auto',
-                overflow: 'hidden',
-                display: 'block',
-                boxShadow: PLUM_SHADOW,
-                position: 'relative',
-              }}
+              className={i === 0 ? 'hero-photo-tall' : 'hero-photo-small'}
+              style={{ boxShadow: PLUM_SHADOW }}
             >
               {recipe.coverImage && (
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  backgroundImage: `url(${recipe.coverImage})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  // Parallax: only on non-touch devices; gracefully ignored on iOS
-                  backgroundAttachment: 'local',
-                  transition: 'transform 0.4s ease',
-                }}
-                  className="hero-parallax-img"
+                <img
+                  src={recipe.coverImage}
+                  alt={recipe.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
               )}
             </Link>
@@ -129,36 +103,7 @@ export default function Home({ featured, recent }) {
         </div>
       </section>
 
-      {/* Parallax CSS — desktop only, gracefully degraded */}
-      <style>{`
-        @media (hover: hover) and (min-width: 769px) {
-          .hero-parallax-img {
-            background-attachment: fixed !important;
-            background-size: cover !important;
-          }
-          a:hover .hero-parallax-img {
-            transform: scale(1.03);
-          }
-        }
-        @media (max-width: 768px) {
-          .hero-section {
-            grid-template-columns: 1fr !important;
-            padding: 48px 20px 40px !important;
-            gap: 32px !important;
-          }
-          .hero-section h1 {
-            font-size: 26px !important;
-          }
-          .hero-section .hero-script {
-            font-size: 34px !important;
-          }
-          .hero-photos {
-            grid-template-rows: 160px 160px !important;
-          }
-        }
-      `}</style>
-
-      {/* CATEGORY STRIP */}
+      {/* ── CATEGORY STRIP ── */}
       <div className="cat-strip">
         <Link href="/recipes" className="cat-item active">All</Link>
         {CATEGORIES.map((cat) => (
@@ -172,7 +117,7 @@ export default function Home({ featured, recent }) {
         ))}
       </div>
 
-      {/* FEATURED RECIPES */}
+      {/* ── FEATURED RECIPES ── */}
       <section className="section" style={{ background: 'var(--cream)' }}>
         <div className="sec-head">
           <div>
@@ -185,65 +130,54 @@ export default function Home({ featured, recent }) {
         {featured[0] && (
           <Link
             href={`/recipes/${featured[0].slug}`}
-            className="featured-card"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1.15fr 1fr',
-              background: 'var(--warm-white)',
-              border: '0.5px solid var(--border-m)',
-              marginBottom: '24px',
-              textDecoration: 'none',
-              boxShadow: PLUM_SHADOW,
-            }}
+            className="featured-card-link"
+            style={{ textDecoration: 'none' }}
           >
-            <div style={{ height: '440px', overflow: 'hidden', background: 'var(--blush)' }}>
-              {featured[0].coverImage && (
-                <img
-                  src={featured[0].coverImage}
-                  alt={featured[0].title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              )}
-            </div>
-            <div style={{
-              padding: '52px 48px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-            }}>
-              <div style={{
-                fontFamily: "'Jost', sans-serif",
-                fontSize: '11px',
-                letterSpacing: '0.3em',
-                textTransform: 'uppercase',
-                color: 'var(--mauve)',
-                marginBottom: '14px',
-                fontWeight: 400,
-              }}>
-                {featured[0].category}
+            <div className="featured-card" style={{ boxShadow: PLUM_SHADOW }}>
+              <div className="featured-card-img">
+                {featured[0].coverImage && (
+                  <img
+                    src={featured[0].coverImage}
+                    alt={featured[0].title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                )}
               </div>
-              <h2 style={{
-                fontSize: '34px',
-                fontWeight: 300,
-                lineHeight: 1.15,
-                marginBottom: '14px',
-                color: 'var(--text-dark)',
-              }}>
-                {featured[0].title}
-              </h2>
-              <p style={{
-                fontSize: '14px',
-                color: 'var(--text-mid)',
-                fontWeight: 300,
-                fontFamily: "'Jost', sans-serif",
-                lineHeight: 1.75,
-                marginBottom: '32px',
-              }}>
-                {featured[0].seoDescription}
-              </p>
-              <span className="btn-primary" style={{ alignSelf: 'flex-start' }}>
-                Get the recipe
-              </span>
+              <div className="featured-card-body">
+                <div style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: '11px',
+                  letterSpacing: '0.3em',
+                  textTransform: 'uppercase',
+                  color: 'var(--mauve)',
+                  marginBottom: '14px',
+                  fontWeight: 400,
+                }}>
+                  {featured[0].category}
+                </div>
+                <h2 style={{
+                  fontSize: '34px',
+                  fontWeight: 300,
+                  lineHeight: 1.15,
+                  marginBottom: '14px',
+                  color: 'var(--text-dark)',
+                }}>
+                  {featured[0].title}
+                </h2>
+                <p style={{
+                  fontSize: '14px',
+                  color: 'var(--text-mid)',
+                  fontWeight: 300,
+                  fontFamily: "'Jost', sans-serif",
+                  lineHeight: 1.75,
+                  marginBottom: '32px',
+                }}>
+                  {featured[0].seoDescription}
+                </p>
+                <span className="btn-primary" style={{ alignSelf: 'flex-start' }}>
+                  Get the recipe
+                </span>
+              </div>
             </div>
           </Link>
         )}
@@ -255,27 +189,31 @@ export default function Home({ featured, recent }) {
         </div>
       </section>
 
-      {/* SPLIT MARQUEE + ABOUT ME
-          Desktop: 3-col grid — left marquee | text | right marquee
-          Mobile: stacked — text on top, single marquee strip below */}
+      {/* ── SPLIT MARQUEE + ABOUT ME ──
+          Desktop: 3-col grid, marquee flanking centered text
+          Mobile: text block + single horizontal marquee strip below */}
       <section style={{
         background: 'var(--warm-white)',
         borderTop: '0.5px solid var(--border-m)',
         borderBottom: '0.5px solid var(--border-m)',
       }}>
-        {/* Desktop layout */}
-        <div className="about-split-desktop">
+        <div className="about-split">
+
           {/* LEFT MARQUEE */}
-          <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="about-marquee-col">
+            {/* fade left edge into warm-white */}
             <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            {/* fade right edge into warm-white */}
             <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '40px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '40px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            {/* fade top edge */}
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            {/* fade bottom edge */}
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <HorizontalPhotoMarquee inline />
           </div>
 
-          {/* ABOUT ME TEXT */}
-          <div style={{ padding: '72px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--warm-white)' }}>
+          {/* ABOUT TEXT */}
+          <div className="about-text-col">
             <div style={{
               fontFamily: "'Jost', sans-serif",
               fontSize: '11px',
@@ -311,53 +249,28 @@ export default function Home({ featured, recent }) {
           </div>
 
           {/* RIGHT MARQUEE */}
-          <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="about-marquee-col">
             <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '40px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '40px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <HorizontalPhotoMarquee inline />
           </div>
+
         </div>
 
-        {/* Mobile layout — text then single marquee strip */}
-        <div className="about-split-mobile">
-          <div style={{ padding: '48px 20px 40px', background: 'var(--warm-white)' }}>
-            <div style={{
-              fontFamily: "'Jost', sans-serif",
-              fontSize: '11px',
-              letterSpacing: '0.32em',
-              textTransform: 'uppercase',
-              color: 'var(--plum)',
-              fontWeight: 400,
-              marginBottom: '12px',
-            }}>
-              A little about me
-            </div>
-            <span style={{
-              fontFamily: "'Alex Brush', cursive",
-              fontSize: '44px',
-              color: 'var(--text-dark)',
-              lineHeight: 1,
-              marginBottom: '20px',
-              display: 'block',
-            }}>
-              Hi, I&apos;m Josephine
-            </span>
+        {/* Mobile: text then marquee strip */}
+        <div className="about-mobile-marquee">
+          <div className="about-mobile-text">
+            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'var(--plum)', fontWeight: 400, marginBottom: '12px' }}>A little about me</div>
+            <span style={{ fontFamily: "'Alex Brush', cursive", fontSize: '44px', color: 'var(--text-dark)', lineHeight: 1, marginBottom: '20px', display: 'block' }}>Hi, I&apos;m Josephine</span>
             <div style={{ fontSize: '16px', fontWeight: 300, lineHeight: 1.85, color: 'var(--text-mid)' }}>
-              <p style={{ marginBottom: '16px' }}>
-                I&apos;m a self-taught baker, content creator, and full-time dessert enthusiast. I started baking at home out of comfort and curiosity, and somewhere between the failed first attempts and the recipes that actually worked, it became my favorite activity.
-              </p>
-              <p>
-                Every recipe on this site is something I tweaked, tested, and documented myself. I love seasonal ingredients, brown butter, and finding new ways to make classic things feel exciting again. I&apos;m still learning with every bake, and I think that&apos;s kind of the point. 🤷‍♀️
-              </p>
+              <p style={{ marginBottom: '16px' }}>I&apos;m a self-taught baker, content creator, and full-time dessert enthusiast. I started baking at home out of comfort and curiosity, and somewhere between the failed first attempts and the recipes that actually worked, it became my favorite activity.</p>
+              <p>Every recipe on this site is something I tweaked, tested, and documented myself. I love seasonal ingredients, brown butter, and finding new ways to make classic things feel exciting again. I&apos;m still learning with every bake, and I think that&apos;s kind of the point. 🤷‍♀️</p>
             </div>
-            <Link href="/about" className="btn-ghost" style={{ marginTop: '28px', display: 'inline-flex' }}>
-              More about me
-            </Link>
+            <Link href="/about" className="btn-ghost" style={{ marginTop: '28px', display: 'inline-flex' }}>More about me</Link>
           </div>
-          {/* Single marquee strip on mobile */}
-          <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--mauve-pale)', height: '180px', display: 'flex', alignItems: 'center' }}>
+          <div style={{ position: 'relative', overflow: 'hidden', height: '180px', background: 'var(--warm-white)', display: 'flex', alignItems: 'center' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, width: '40px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', top: 0, right: 0, width: '40px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <HorizontalPhotoMarquee inline />
@@ -365,48 +278,7 @@ export default function Home({ featured, recent }) {
         </div>
       </section>
 
-      <style>{`
-        /* Desktop split layout */
-        .about-split-desktop {
-          display: grid;
-          grid-template-columns: 1fr 680px 1fr;
-          min-height: 380px;
-        }
-        .about-split-mobile { display: none; }
-
-        /* Featured card mobile */
-        @media (max-width: 768px) {
-          .about-split-desktop { display: none; }
-          .about-split-mobile { display: block; }
-
-          .featured-card {
-            grid-template-columns: 1fr !important;
-          }
-          .featured-card > div:first-child {
-            height: 280px !important;
-          }
-          .featured-card > div:last-child {
-            padding: 28px 24px !important;
-          }
-          .featured-card h2 {
-            font-size: 24px !important;
-          }
-
-          /* Hero section */
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-            padding: 40px 20px 36px !important;
-            gap: 32px !important;
-          }
-          .hero-grid h1 { font-size: 26px !important; line-height: 1.3 !important; }
-          .hero-script { font-size: 34px !important; }
-          .hero-photos {
-            grid-template-rows: 150px 150px !important;
-          }
-        }
-      `}</style>
-
-      {/* FEATURED IN */}
+      {/* ── FEATURED IN ── */}
       <section style={{
         background: 'var(--warm-white)',
         borderTop: '0.5px solid var(--border-m)',
@@ -424,54 +296,23 @@ export default function Home({ featured, recent }) {
           gap: '16px',
         }}>
           <div>
-            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--mauve)', fontWeight: 400, marginBottom: '3px' }}>
-              In the press
-            </div>
-            <div style={{ fontFamily: "'Alex Brush', cursive", fontSize: '44px', color: 'var(--plum)', lineHeight: 1 }}>
-              Featured In
-            </div>
+            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--mauve)', fontWeight: 400, marginBottom: '3px' }}>In the press</div>
+            <div style={{ fontFamily: "'Alex Brush', cursive", fontSize: '44px', color: 'var(--plum)', lineHeight: 1 }}>Featured In</div>
           </div>
-          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-mid)', border: '0.5px solid var(--border-m)', padding: '8px 18px', fontWeight: 400, boxShadow: '0 8px 32px rgba(113,12,33,0.08)' }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-mid)', border: '0.5px solid var(--border-m)', padding: '8px 18px', fontWeight: 400 }}>
             Hedessent.ca
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {[
-            {
-              href: 'https://hedessent.ca/dessert-recipes/peppermint-macarons/',
-              slug: 'peppermint-macarons',
-              name: 'Peppermint Macarons',
-              desc: "My peppermint macaron recipe featured in Hedessent's dessert collection, made with their Peppermint Flavour Drops.",
-              img: 'https://static.wixstatic.com/media/b3c1ed_526061a867174bc49e3da3f7e4f70c0d~mv2.jpg',
-            },
-            {
-              href: 'https://hedessent.ca/dessert-recipes/passion-fruit-fudge/',
-              slug: 'white-chocolate-passionfruit-fudge',
-              name: 'White Chocolate Passionfruit Fudge',
-              desc: "My white chocolate passionfruit fudge featured in Hedessent's dessert collection, made with their Passionfruit Flavour Drops.",
-              img: 'https://static.wixstatic.com/media/b3c1ed_76bf153b93e947aebba9233bbc31a74c~mv2.jpg',
-            },
+            { href: 'https://hedessent.ca/dessert-recipes/peppermint-macarons/', slug: 'peppermint-macarons', name: 'Peppermint Macarons', desc: "My peppermint macaron recipe featured in Hedessent's dessert collection, made with their Peppermint Flavour Drops.", img: 'https://static.wixstatic.com/media/b3c1ed_526061a867174bc49e3da3f7e4f70c0d~mv2.jpg' },
+            { href: 'https://hedessent.ca/dessert-recipes/passion-fruit-fudge/', slug: 'white-chocolate-passionfruit-fudge', name: 'White Chocolate Passionfruit Fudge', desc: "My white chocolate passionfruit fudge featured in Hedessent's dessert collection, made with their Passionfruit Flavour Drops.", img: 'https://static.wixstatic.com/media/b3c1ed_76bf153b93e947aebba9233bbc31a74c~mv2.jpg' },
           ].map((item) => (
-            <a
-              key={item.slug}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="featured-in-card"
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '280px 1fr',
-                background: 'var(--cream)',
-                border: '0.5px solid var(--border-m)',
-                boxShadow: '0 8px 32px rgba(113,12,33,0.08)',
-                textDecoration: 'none',
-                overflow: 'hidden',
-                transition: 'box-shadow 0.3s, transform 0.3s',
-              }}
+            <a key={item.slug} href={item.href} target="_blank" rel="noopener noreferrer" className="featured-in-card"
               onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 12px 40px rgba(113,12,33,0.14)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
               onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 8px 32px rgba(113,12,33,0.08)'; e.currentTarget.style.transform = 'translateY(0)' }}
             >
-              <div style={{ height: '200px', overflow: 'hidden', background: 'var(--blush)', position: 'relative' }}>
+              <div className="featured-in-img">
                 <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'var(--plum)', color: '#fff', fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', padding: '4px 9px', fontWeight: 400 }}>Featured Recipe</span>
               </div>
@@ -487,19 +328,9 @@ export default function Home({ featured, recent }) {
             </a>
           ))}
         </div>
-        <style>{`
-          @media (max-width: 768px) {
-            .featured-in-card {
-              grid-template-columns: 1fr !important;
-            }
-            .featured-in-card > div:first-child {
-              height: 200px !important;
-            }
-          }
-        `}</style>
       </section>
 
-      {/* MORE RECIPES */}
+      {/* ── MORE RECIPES ── */}
       <section className="section" style={{ background: 'var(--warm-white)' }}>
         <div className="sec-head">
           <div>
@@ -517,6 +348,123 @@ export default function Home({ featured, recent }) {
 
       <Newsletter />
       <Footer />
+
+      <style>{`
+        /* HERO */
+        .hero-section {
+          background: var(--warm-white);
+          padding: 80px 40px 90px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 72px;
+          align-items: center;
+          border-bottom: 0.5px solid var(--border-m);
+        }
+        .hero-photos {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 210px 210px;
+          gap: 10px;
+        }
+        .hero-photo-tall {
+          grid-row: 1 / 3;
+          overflow: hidden;
+          display: block;
+        }
+        .hero-photo-small {
+          overflow: hidden;
+          display: block;
+        }
+
+        /* FEATURED CARD */
+        .featured-card {
+          display: grid;
+          grid-template-columns: 1.15fr 1fr;
+          background: var(--warm-white);
+          border: 0.5px solid var(--border-m);
+          margin-bottom: 24px;
+        }
+        .featured-card-img { height: 440px; overflow: hidden; background: var(--blush); }
+        .featured-card-body { padding: 52px 48px; display: flex; flex-direction: column; justify-content: center; }
+
+        /* SPLIT ABOUT */
+        .about-split {
+          display: grid;
+          grid-template-columns: 1fr 680px 1fr;
+        }
+        .about-marquee-col {
+          position: relative;
+          overflow: hidden;
+          background: var(--warm-white);
+          display: flex;
+          align-items: center;
+          min-height: 400px;
+        }
+        .about-text-col {
+          padding: 72px 56px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          background: var(--warm-white);
+        }
+        .about-mobile-marquee { display: none; }
+
+        /* FEATURED IN */
+        .featured-in-card {
+          display: grid;
+          grid-template-columns: 280px 1fr;
+          background: var(--cream);
+          border: 0.5px solid var(--border-m);
+          box-shadow: 0 8px 32px rgba(113,12,33,0.08);
+          text-decoration: none;
+          overflow: hidden;
+          transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .featured-in-img {
+          height: 200px;
+          overflow: hidden;
+          background: var(--blush);
+          position: relative;
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+
+          /* Hero — stack text above photos */
+          .hero-section {
+            grid-template-columns: 1fr;
+            padding: 40px 20px 36px;
+            gap: 28px;
+          }
+          .hero-section h1 { font-size: 26px; line-height: 1.3; }
+          .hero-section span[style*="46px"] { font-size: 32px !important; }
+          .hero-photos {
+            grid-template-rows: 160px 160px;
+          }
+
+          /* Featured card — stack */
+          .featured-card {
+            grid-template-columns: 1fr;
+          }
+          .featured-card-img { height: 260px; }
+          .featured-card-body { padding: 28px 24px; }
+          .featured-card-body h2 { font-size: 24px; }
+
+          /* Split about — hide desktop grid, show mobile stack */
+          .about-split { display: none; }
+          .about-mobile-marquee { display: block; }
+
+          /* About mobile text */
+          .about-mobile-text {
+            padding: 48px 20px 32px;
+            background: var(--warm-white);
+          }
+
+          /* Featured in — stack */
+          .featured-in-card { grid-template-columns: 1fr; }
+          .featured-in-img { height: 200px; }
+        }
+      `}</style>
     </>
   )
 }
