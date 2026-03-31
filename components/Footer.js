@@ -6,7 +6,7 @@ export default function Footer() {
       <footer>
         <div>
           <span className="footer-script">Josephine&apos;s Baking</span>
-          <p className="footer-tagline">Straightforward recipes that actually work.</p>
+          <p className="footer-tagline">Recipes for comfort and curiosity ♡.</p>
         </div>
         <div>
           <div className="footer-col-label">Recipes</div>
