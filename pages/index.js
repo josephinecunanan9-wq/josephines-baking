@@ -253,7 +253,7 @@ export default function Home({ featured, recent }) {
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div className="about-marquee-inner">
-              <HorizontalPhotoMarquee inline />
+              <HorizontalPhotoMarquee inline offset="-18s" />
             </div>
           </div>
 
@@ -390,7 +390,7 @@ export default function Home({ featured, recent }) {
         /* SPLIT ABOUT */
         .about-split {
           display: grid;
-          grid-template-columns: 200px 1fr 200px;
+          grid-template-columns: 272px 1fr 272px;
         }
         .about-marquee-col {
           position: relative;
