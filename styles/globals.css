@@ -17,16 +17,8 @@
   --border-m: rgba(155, 123, 140, 0.2);
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Cormorant Garamond', Georgia, serif;
   background: var(--cream);
@@ -35,10 +27,8 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
-
 .script { font-family: 'Alex Brush', cursive; }
 .sans { font-family: 'Jost', sans-serif; }
-
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 
@@ -47,7 +37,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--plum);
   color: #fff;
   font-family: 'Jost', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   padding: 13px 28px;
@@ -63,7 +53,7 @@ a { color: inherit; text-decoration: none; }
   background: transparent;
   color: var(--text-mid);
   font-family: 'Jost', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   border: none;
@@ -90,50 +80,13 @@ a { color: inherit; text-decoration: none; }
   top: 0;
   z-index: 100;
 }
-.nav-logo {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  line-height: 1;
-  text-decoration: none;
-}
-.nav-logo-script {
-  font-family: 'Alex Brush', cursive;
-  font-size: 30px;
-  color: var(--plum);
-  line-height: 1;
-}
-.nav-logo-sub {
-  font-family: 'Jost', sans-serif;
-  font-size: 8px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--mauve);
-  font-weight: 400;
-}
-.nav-links {
-  display: flex;
-  gap: 36px;
-  list-style: none;
-}
-.nav-links a {
-  font-family: 'Jost', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-mid);
-  font-weight: 400;
-  transition: color 0.2s;
-}
+.nav-logo { display: flex; flex-direction: column; gap: 2px; line-height: 1; text-decoration: none; }
+.nav-logo-script { font-family: 'Alex Brush', cursive; font-size: 30px; color: var(--plum); line-height: 1; }
+.nav-logo-sub { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--mauve); font-weight: 400; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-mid); font-weight: 400; transition: color 0.2s; }
 .nav-links a:hover { color: var(--plum); }
-.nav-search {
-  color: var(--mauve);
-  cursor: pointer;
-  background: none;
-  border: none;
-  display: flex;
-  align-items: center;
-}
+.nav-search { color: var(--mauve); cursor: pointer; background: none; border: none; display: flex; align-items: center; }
 
 /* CATEGORY STRIP */
 .cat-strip {
@@ -146,7 +99,6 @@ a { color: inherit; text-decoration: none; }
   scrollbar-width: none;
 }
 .cat-strip::-webkit-scrollbar { display: none; }
-
 .cat-item {
   font-family: 'Jost', sans-serif;
   font-size: 14px;
@@ -156,7 +108,7 @@ a { color: inherit; text-decoration: none; }
   padding: 16px 22px;
   white-space: nowrap;
   cursor: pointer;
-  border-right: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-right: 0.5px solid rgba(255,255,255,0.1);
   font-weight: 700;
   transition: color 0.2s;
   text-decoration: none;
@@ -168,7 +120,7 @@ a { color: inherit; text-decoration: none; }
 .cat-item.active { opacity: 1; }
 .cat-item:hover { color: var(--mauve-light); opacity: 1; }
 
-/* SECTION */
+/* SECTIONS */
 .section { padding: 72px 40px; }
 .sec-head {
   display: flex;
@@ -178,32 +130,9 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 0.5px solid var(--border-m);
   padding-bottom: 14px;
 }
-.sec-label {
-  font-family: 'Jost', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--mauve);
-  font-weight: 400;
-  margin-bottom: 3px;
-}
-.sec-title {
-  font-family: 'Alex Brush', cursive;
-  font-size: 44px;
-  color: var(--text-dark);
-  line-height: 1;
-}
-.sec-link {
-  font-family: 'Jost', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--mauve);
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.sec-label { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--mauve); font-weight: 400; margin-bottom: 3px; }
+.sec-title { font-family: 'Alex Brush', cursive; font-size: 44px; color: var(--text-dark); line-height: 1; }
+.sec-link { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mauve); font-weight: 400; display: flex; align-items: center; gap: 8px; }
 .sec-link::after { content: '\2192'; font-size: 11px; color: var(--plum); }
 
 /* RECIPE CARDS */
@@ -217,198 +146,86 @@ a { color: inherit; text-decoration: none; }
   text-decoration: none;
   transition: box-shadow 0.3s, transform 0.3s;
 }
-.recipe-card:hover {
-  border-color: var(--mauve-light);
-  box-shadow: 0 12px 40px rgba(113,12,33,0.14);
-  transform: translateY(-3px);
-}
-.recipe-card-img {
-  height: 230px;
-  overflow: hidden;
-  background: var(--blush);
-  position: relative;
-}
-.recipe-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
+.recipe-card:hover { border-color: var(--mauve-light); box-shadow: 0 12px 40px rgba(113,12,33,0.14); transform: translateY(-3px); }
+.recipe-card-img { height: 230px; overflow: hidden; background: var(--blush); position: relative; }
+.recipe-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
 .recipe-card:hover .recipe-card-img img { transform: scale(1.04); }
-.recipe-card-tag {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--plum);
-  color: #fff;
-  font-family: 'Jost', sans-serif;
-  font-size: 7px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  padding: 4px 9px;
-  font-weight: 400;
-}
+.recipe-card-tag { position: absolute; top: 12px; left: 12px; background: var(--plum); color: #fff; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; padding: 4px 9px; font-weight: 400; }
 .recipe-card-body { padding: 18px 18px 22px; }
-.recipe-card-name {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.25;
-  color: var(--text-dark);
-  margin-bottom: 6px;
-}
-.recipe-card-desc {
-  font-size: 12px;
-  color: var(--mauve);
-  font-weight: 400;
-  font-family: 'Jost', sans-serif;
-}
+.recipe-card-name { font-size: 20px; font-weight: 400; line-height: 1.25; color: var(--text-dark); margin-bottom: 6px; }
+.recipe-card-desc { font-size: 12px; color: var(--mauve); font-weight: 400; font-family: 'Jost', sans-serif; }
 
 /* RECIPE GRID */
-.recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
+.recipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
 /* NEWSLETTER STRIP */
-.newsletter-strip {
-  background: var(--plum-deep);
-  padding: 36px 48px;
-}
-.newsletter-strip-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 48px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
+.newsletter-strip { background: var(--plum-deep); padding: 36px 48px; }
+.newsletter-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; max-width: 1100px; margin: 0 auto; }
 .newsletter-strip-copy { flex: 1; }
-.newsletter-strip-label {
-  font-family: 'Jost', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 10px;
-}
-.newsletter-strip-heading {
-  font-size: 28px;
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 8px;
-}
-.newsletter-strip-sub {
-  font-family: 'Jost', sans-serif;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.32);
-  font-weight: 300;
-}
-.newsletter-strip-form {
-  display: flex;
-  flex-shrink: 0;
-}
-.newsletter-strip-input {
-  width: 240px;
-  padding: 13px 18px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 0.5px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
-  font-family: 'Jost', sans-serif;
-  font-size: 13px;
-  outline: none;
-  font-weight: 300;
-}
-.newsletter-strip-input::placeholder { color: rgba(255, 255, 255, 0.3); }
-.newsletter-strip-btn {
-  padding: 13px 22px;
-  background: var(--plum);
-  color: rgba(255, 255, 255, 0.9);
-  border: none;
-  font-family: 'Jost', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-weight: 400;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
+.newsletter-strip-label { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+.newsletter-strip-heading { font-size: 28px; font-weight: 300; color: #fff; line-height: 1.2; margin-bottom: 8px; }
+.newsletter-strip-sub { font-family: 'Jost', sans-serif; font-size: 12px; color: rgba(255,255,255,0.32); font-weight: 300; }
+.newsletter-strip-form { display: flex; flex-shrink: 0; }
+.newsletter-strip-input { width: 240px; padding: 13px 18px; background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.15); color: #fff; font-family: 'Jost', sans-serif; font-size: 13px; outline: none; font-weight: 300; }
+.newsletter-strip-input::placeholder { color: rgba(255,255,255,0.3); }
+.newsletter-strip-btn { padding: 13px 22px; background: var(--plum); color: rgba(255,255,255,0.9); border: none; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; cursor: pointer; font-weight: 400; white-space: nowrap; transition: background 0.2s; }
 .newsletter-strip-btn:hover { background: #5a0a1a; }
 
 /* FOOTER */
-footer {
-  background: var(--mauve-footer);
-  padding: 56px 40px 32px;
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
-  gap: 48px;
-  border-top: 0.5px solid var(--mauve-footer-dark);
-}
-.footer-script {
-  font-family: 'Alex Brush', cursive;
-  font-size: 42px;
-  color: var(--plum);
-  display: block;
-  margin-bottom: 12px;
-  line-height: 1;
-}
-.footer-tagline {
-  font-family: 'Jost', sans-serif;
-  font-size: 12px;
-  color: var(--text-mid);
-  font-weight: 300;
-  line-height: 1.65;
-  max-width: 210px;
-}
-.footer-col-label {
-  font-family: 'Jost', sans-serif;
-  font-size: 8px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--mauve);
-  margin-bottom: 18px;
-  font-weight: 400;
-}
-.footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-}
-.footer-links a {
-  font-family: 'Jost', sans-serif;
-  font-size: 13px;
-  color: var(--text-mid);
-  font-weight: 300;
-  transition: color 0.2s;
-}
+footer { background: var(--mauve-footer); padding: 56px 40px 32px; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; border-top: 0.5px solid var(--mauve-footer-dark); }
+.footer-script { font-family: 'Alex Brush', cursive; font-size: 42px; color: var(--plum); display: block; margin-bottom: 12px; line-height: 1; }
+.footer-tagline { font-family: 'Jost', sans-serif; font-size: 12px; color: var(--text-mid); font-weight: 300; line-height: 1.65; max-width: 210px; }
+.footer-col-label { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mauve); margin-bottom: 18px; font-weight: 400; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.footer-links a { font-family: 'Jost', sans-serif; font-size: 13px; color: var(--text-mid); font-weight: 300; transition: color 0.2s; }
 .footer-links a:hover { color: var(--plum); }
-.footer-bottom {
-  background: var(--mauve-footer-dark);
-  padding: 16px 40px;
-  display: flex;
-  justify-content: space-between;
-}
-.footer-copy {
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  color: var(--text-mid);
-  font-weight: 300;
-}
+.footer-bottom { background: var(--mauve-footer-dark); padding: 16px 40px; display: flex; justify-content: space-between; }
+.footer-copy { font-family: 'Jost', sans-serif; font-size: 11px; color: var(--text-mid); font-weight: 300; }
 
-/* RESPONSIVE */
+/* ── MOBILE — applies to every page via globals ──────────────────────────── */
 @media (max-width: 768px) {
-  .nav { padding: 0 20px; }
+
+  /* NAV */
+  .nav { padding: 0 20px; height: 60px; }
   .nav-links { display: none; }
-  .section { padding: 48px 20px; }
-  .recipe-grid { grid-template-columns: 1fr; }
-  footer { grid-template-columns: 1fr; padding: 40px 20px 24px; gap: 32px; }
-  .footer-bottom { padding: 14px 20px; flex-direction: column; gap: 4px; }
-  .cat-strip { padding: 0 20px; }
-  .newsletter-strip { padding: 32px 24px; }
-  .newsletter-strip-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .newsletter-strip-input { width: 100%; }
+  .nav-logo-script { font-size: 26px; }
+  .nav-logo-sub { font-size: 11px; }
+
+  /* CATEGORY STRIP */
+  .cat-strip { padding: 0 16px; }
+  .cat-item { font-size: 12px; padding: 14px 12px; letter-spacing: 0.08em; }
+
+  /* SECTIONS */
+  .section { padding: 40px 20px; }
+  .sec-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .sec-title { font-size: 36px; }
+
+  /* RECIPE GRID */
+  .recipe-grid { grid-template-columns: 1fr; gap: 16px; }
+  .recipe-card-img { height: 200px; }
+  .recipe-card-name { font-size: 18px; }
+
+  /* NEWSLETTER — stacks on ALL pages */
+  .newsletter-strip { padding: 32px 20px; }
+  .newsletter-strip-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .newsletter-strip-heading { font-size: 22px; }
+  .newsletter-strip-copy { width: 100%; }
   .newsletter-strip-form { width: 100%; }
+  .newsletter-strip-input { width: 100%; min-width: 0; flex: 1; }
+
+  /* FOOTER — stacks on ALL pages */
+  footer {
+    grid-template-columns: 1fr;
+    padding: 40px 20px 24px;
+    gap: 32px;
+  }
+  .footer-bottom {
+    padding: 14px 20px;
+    flex-direction: column;
+    gap: 6px;
+  }
 }
