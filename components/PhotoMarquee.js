@@ -230,7 +230,7 @@ const V_PHOTO_OVERLAYS = [
 
 // inline=true: used inside the split about-me layout — no outer wrapper padding/borders,
 // fills the container height, no top/bottom fades (parent handles those)
-export function HorizontalPhotoMarquee({ inline = false }) {
+export function HorizontalPhotoMarquee({ inline = false, offset = '0s' }) {
   const repeated = [...PHOTOS, ...PHOTOS, ...PHOTOS]
 
   const outerStyle = inline
@@ -262,7 +262,7 @@ export function HorizontalPhotoMarquee({ inline = false }) {
       <div style={{
         display: 'flex',
         gap: '0px',
-        animation: 'marquee-h 50s linear infinite',
+        animation: `marquee-h 50s linear ${offset} infinite`,
         width: 'max-content',
         padding: inline ? '20px 8px' : '0 16px',
         alignItems: 'center',
