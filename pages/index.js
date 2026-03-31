@@ -390,7 +390,7 @@ export default function Home({ featured, recent }) {
         /* SPLIT ABOUT */
         .about-split {
           display: grid;
-          grid-template-columns: 1fr 680px 1fr;
+          grid-template-columns: 200px 1fr 200px;
         }
         .about-marquee-col {
           position: relative;
@@ -408,7 +408,7 @@ export default function Home({ featured, recent }) {
           overflow: hidden;
         }
         .about-text-col {
-          padding: 72px 56px;
+          padding: 48px 52px;
           display: flex;
           flex-direction: column;
           justify-content: center;
