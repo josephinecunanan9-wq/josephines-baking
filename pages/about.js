@@ -14,20 +14,11 @@ export default function About() {
       </Head>
       <Nav />
       <main>
-        <section style={{
-          background: 'var(--warm-white)',
-          padding: '80px 40px',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1.1fr',
-          gap: '80px',
-          alignItems: 'center',
-          maxWidth: '1100px',
-          margin: '0 auto',
-        }}>
-          <div>
+        <section className="about-section">
+          <div className="about-text">
             <div style={{
               fontFamily: "'Jost', sans-serif",
-              fontSize: '9px',
+              fontSize: '11px',
               letterSpacing: '0.32em',
               textTransform: 'uppercase',
               color: 'var(--plum)',
@@ -61,11 +52,47 @@ export default function About() {
               Browse all recipes
             </Link>
           </div>
-          <VerticalPhotoMarquee />
+
+          <div className="about-marquee">
+            <VerticalPhotoMarquee />
+          </div>
         </section>
       </main>
+
       <Newsletter />
       <Footer />
+
+      <style>{`
+        .about-section {
+          background: var(--warm-white);
+          padding: 80px 40px;
+          display: grid;
+          grid-template-columns: 1fr 1.1fr;
+          gap: 80px;
+          align-items: center;
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+          .about-section {
+            grid-template-columns: 1fr;
+            padding: 48px 20px 40px;
+            gap: 0;
+            max-width: 100%;
+          }
+          .about-text span[style] {
+            font-size: 48px !important;
+          }
+          .about-text div[style*="18px"] {
+            font-size: 16px !important;
+          }
+          /* Hide vertical marquee on mobile — it breaks the layout */
+          .about-marquee {
+            display: none;
+          }
+        }
+      `}</style>
     </>
   )
 }
