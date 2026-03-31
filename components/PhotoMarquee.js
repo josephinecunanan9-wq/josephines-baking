@@ -228,28 +228,43 @@ const V_PHOTO_OVERLAYS = [
   ],
 ]
 
-export function HorizontalPhotoMarquee() {
+// inline=true: used inside the split about-me layout — no outer wrapper padding/borders,
+// fills the container height, no top/bottom fades (parent handles those)
+export function HorizontalPhotoMarquee({ inline = false }) {
   const repeated = [...PHOTOS, ...PHOTOS, ...PHOTOS]
 
+  const outerStyle = inline
+    ? {
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        position: 'relative',
+      }
+    : {
+        position: 'relative',
+        overflow: 'hidden',
+        background: 'var(--mauve-pale)',
+        padding: '28px 0',
+      }
+
   return (
-    <div style={{
-      position: 'relative',
-      overflow: 'hidden',
-      background: 'var(--mauve-pale)',
-      padding: '28px 0',
-    }}>
-      {/* Soft fade — all 4 edges into cream */}
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '32px', background: 'linear-gradient(to bottom, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '32px', background: 'linear-gradient(to top, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '80px', height: '100%', background: 'linear-gradient(to right, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: 0, right: 0, width: '80px', height: '100%', background: 'linear-gradient(to left, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+    <div style={outerStyle}>
+      {/* Fades — only on standalone (not inline) */}
+      {!inline && (
+        <>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '32px', background: 'linear-gradient(to bottom, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '32px', background: 'linear-gradient(to top, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '80px', height: '100%', background: 'linear-gradient(to right, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: 0, right: 0, width: '80px', height: '100%', background: 'linear-gradient(to left, var(--cream), transparent)', zIndex: 5, pointerEvents: 'none' }} />
+        </>
+      )}
 
       <div style={{
         display: 'flex',
         gap: '0px',
         animation: 'marquee-h 50s linear infinite',
         width: 'max-content',
-        padding: '0 16px',
+        padding: inline ? '20px 8px' : '0 16px',
         alignItems: 'center',
       }}>
         {repeated.map((photo, i) => {
@@ -261,7 +276,6 @@ export function HorizontalPhotoMarquee() {
 
           return (
             <div key={i} style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-              {/* Photo — no white overlay */}
               <div style={{ position: 'relative', flexShrink: 0, margin: '0 4px' }}>
                 <div style={{
                   width: '112px',
@@ -300,7 +314,6 @@ export function HorizontalPhotoMarquee() {
                 ))}
               </div>
 
-              {/* Icon cluster between photos */}
               <div style={{ position: 'relative', width: '52px', flexShrink: 0, height: '140px' }}>
                 {cluster.map((ic, j) => (
                   <div
@@ -342,10 +355,8 @@ export function VerticalPhotoMarquee() {
       height: '640px',
       background: 'var(--mauve-pale)',
     }}>
-      {/* Top/bottom fade into warm-white */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '60px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '60px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-      {/* Side fades — trimmed to ~16px, just a soft dissolve not a thick border */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '16px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', top: 0, right: 0, width: '16px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
 
@@ -372,7 +383,6 @@ export function VerticalPhotoMarquee() {
                 margin: '0 auto',
               }}
             >
-              {/* Photo — no white overlay */}
               <div style={{
                 width: '189px',
                 height: '252px',
