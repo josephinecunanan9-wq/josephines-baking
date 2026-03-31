@@ -5,7 +5,10 @@ export default function Footer() {
     <>
       <footer>
         <div>
-          <span className="footer-script">Josephine&apos;s Baking</span>
+         <Link href="/" className="nav-logo">
+          <span className="nav-logo-script">Josephine&apos;s</span>
+          <span className="nav-logo-sub">Baking</span>
+        </Link>
           <p className="footer-tagline">Recipes for comfort and curiosity ♡.</p>
         </div>
         <div>
