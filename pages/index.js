@@ -201,15 +201,13 @@ export default function Home({ featured, recent }) {
 
           {/* LEFT MARQUEE */}
           <div className="about-marquee-col">
-            {/* fade left edge into warm-white */}
             <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            {/* fade right edge into warm-white */}
             <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            {/* fade top edge */}
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            {/* fade bottom edge */}
             <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            <HorizontalPhotoMarquee inline />
+            <div className="about-marquee-inner">
+              <HorizontalPhotoMarquee inline />
+            </div>
           </div>
 
           {/* ABOUT TEXT */}
@@ -254,7 +252,9 @@ export default function Home({ featured, recent }) {
             <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to top, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
-            <HorizontalPhotoMarquee inline />
+            <div className="about-marquee-inner">
+              <HorizontalPhotoMarquee inline />
+            </div>
           </div>
 
         </div>
@@ -396,9 +396,16 @@ export default function Home({ featured, recent }) {
           position: relative;
           overflow: hidden;
           background: var(--warm-white);
+        }
+        .about-marquee-inner {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           display: flex;
           align-items: center;
-          min-height: 400px;
+          overflow: hidden;
         }
         .about-text-col {
           padding: 72px 56px;
