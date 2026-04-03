@@ -202,7 +202,7 @@ export default function Home({ featured, recent }) {
         <div className="about-split">
 
           {/* LEFT MARQUEE */}
-          <div className="about-marquee-col">
+          <div className="about-marquee-col" aria-hidden="true">
             <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
@@ -249,7 +249,7 @@ export default function Home({ featured, recent }) {
           </div>
 
           {/* RIGHT MARQUEE */}
-          <div className="about-marquee-col">
+          <div className="about-marquee-col" aria-hidden="true">
             <div style={{ position: 'absolute', top: 0, left: 0, width: '32px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', top: 0, right: 0, width: '32px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '48px', background: 'linear-gradient(to bottom, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
@@ -272,7 +272,7 @@ export default function Home({ featured, recent }) {
             </div>
             <Link href="/about" className="btn-ghost" style={{ marginTop: '28px', display: 'inline-flex' }}>More about me</Link>
           </div>
-          <div style={{ position: 'relative', overflow: 'hidden', height: '180px', background: 'var(--warm-white)', display: 'flex', alignItems: 'center' }}>
+          <div aria-hidden="true" style={{ position: 'relative', overflow: 'hidden', height: '180px', background: 'var(--warm-white)', display: 'flex', alignItems: 'center' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, width: '40px', height: '100%', background: 'linear-gradient(to right, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', top: 0, right: 0, width: '40px', height: '100%', background: 'linear-gradient(to left, var(--warm-white), transparent)', zIndex: 5, pointerEvents: 'none' }} />
             <HorizontalPhotoMarquee inline />
