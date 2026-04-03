@@ -30,7 +30,7 @@ export default function Nav() {
               fontFamily: "'Jost', sans-serif",
               fontSize: '10px',
               letterSpacing: '0.15em',
-              color: 'var(--mauve)',
+              color: 'var(--text-mid)',
               border: '0.5px solid var(--border-m)',
               padding: '7px 14px',
               background: 'transparent',
@@ -44,7 +44,7 @@ export default function Nav() {
             }}
             onMouseLeave={e => {
               e.currentTarget.style.borderColor = 'rgba(155,123,140,0.2)'
-              e.currentTarget.style.color = 'var(--mauve)'
+              e.currentTarget.style.color = 'var(--text-mid)'
             }}
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -124,7 +124,7 @@ export default function Nav() {
               fontFamily: "'Jost', sans-serif",
               fontSize: '11px',
               letterSpacing: '0.18em',
-              color: 'var(--mauve)',
+              color: 'var(--text-mid)',
               border: '0.5px solid var(--border-m)',
               padding: '14px 20px',
               textDecoration: 'none',
