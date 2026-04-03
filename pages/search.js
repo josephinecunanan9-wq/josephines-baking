@@ -43,6 +43,8 @@ export default function SearchPage({ recipes }) {
 
       <Nav />
 
+      <main id="main-content">
+
       <div style={{
         background: 'var(--warm-white)',
         borderBottom: '0.5px solid var(--border-m)',
@@ -54,7 +56,7 @@ export default function SearchPage({ recipes }) {
           fontSize: '9px',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
-          color: 'var(--mauve)',
+          color: 'var(--text-mid)',
           marginBottom: '12px',
           fontWeight: 400,
         }}>
@@ -93,7 +95,7 @@ export default function SearchPage({ recipes }) {
           />
           <div style={{
             position: 'absolute', right: '18px', top: '50%',
-            transform: 'translateY(-50%)', color: 'var(--mauve)', pointerEvents: 'none',
+            transform: 'translateY(-50%)', color: 'var(--text-mid)', pointerEvents: 'none',
           }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="11" cy="11" r="8"/>
@@ -109,7 +111,7 @@ export default function SearchPage({ recipes }) {
                 onClick={() => setQuery(suggestion)}
                 style={{
                   fontFamily: "'Jost', sans-serif", fontSize: '10px',
-                  letterSpacing: '0.15em', color: 'var(--mauve)',
+                  letterSpacing: '0.15em', color: 'var(--text-mid)',
                   border: '0.5px solid var(--border-m)', background: 'transparent',
                   padding: '6px 14px', cursor: 'pointer', fontWeight: 400,
                 }}
@@ -125,7 +127,7 @@ export default function SearchPage({ recipes }) {
         {searched && query && (
           <div style={{
             fontFamily: "'Jost', sans-serif", fontSize: '11px',
-            letterSpacing: '0.15em', color: 'var(--mauve)',
+            letterSpacing: '0.15em', color: 'var(--text-mid)',
             marginBottom: '32px', textAlign: 'center',
           }}>
             {results.length > 0
@@ -154,6 +156,8 @@ export default function SearchPage({ recipes }) {
           </div>
         )}
       </section>
+
+      </main>
 
       <Newsletter />
       <Footer />
