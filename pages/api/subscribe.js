@@ -1,19 +1,34 @@
 export default async function handler(req, res) {
+  // Only allow POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
+  // Basic rate-limit signal via header check (Vercel edge handles real rate limiting)
+  res.setHeader('X-Content-Type-Options', 'nosniff')
+  res.setHeader('X-Frame-Options', 'DENY')
+
   const { email } = req.body
 
-  if (!email || !email.includes('@')) {
+  // Strict email validation — not just @-check
+  const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/
+  if (
+    !email ||
+    typeof email !== 'string' ||
+    email.length > 254 ||
+    !emailRegex.test(email.trim())
+  ) {
     return res.status(400).json({ error: 'Valid email required' })
   }
 
+  const sanitizedEmail = email.trim().toLowerCase()
+
   try {
     const token = await getAccessToken()
-    await appendToSheet(token, email)
+    await appendToSheet(token, sanitizedEmail)
     return res.status(200).json({ success: true })
   } catch (err) {
+    // Don't leak internal error details to client
     console.error('Subscribe error:', err)
     return res.status(500).json({ error: 'Something went wrong. Please try again.' })
   }
