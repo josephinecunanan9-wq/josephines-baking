@@ -6,13 +6,13 @@
   --cream: #FDFAF6;
   --blush: #FAF0F2;
   --warm-white: #FFFEF9;
-  --mauve: #9B7B8C;
-  --mauve-light: #C4A8B6;
+  --mauve: #7A5969;
+  --mauve-light: #9B7B8C;
   --mauve-pale: #F0E8ED;
   --mauve-footer: #E2D0D8;
   --mauve-footer-dark: #C9B0BB;
   --text-dark: #2C2420;
-  --text-mid: #7A5F6A;
+  --text-mid: #5C3D4A;
   --border: rgba(113, 12, 33, 0.1);
   --border-m: rgba(155, 123, 140, 0.2);
 }
@@ -153,7 +153,7 @@ a { color: inherit; text-decoration: none; }
 .recipe-card-tag { position: absolute; top: 12px; left: 12px; background: var(--plum); color: #fff; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; padding: 4px 9px; font-weight: 400; }
 .recipe-card-body { padding: 18px 18px 22px; }
 .recipe-card-name { font-size: 20px; font-weight: 400; line-height: 1.25; color: var(--text-dark); margin-bottom: 6px; }
-.recipe-card-desc { font-size: 12px; color: var(--mauve); font-weight: 400; font-family: 'Jost', sans-serif; }
+.recipe-card-desc { font-size: 12px; color: var(--text-mid); font-weight: 400; font-family: 'Jost', sans-serif; }
 
 /* RECIPE GRID */
 .recipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -162,27 +162,27 @@ a { color: inherit; text-decoration: none; }
 .newsletter-strip { background: var(--plum-deep); padding: 36px 48px; }
 .newsletter-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; max-width: 1100px; margin: 0 auto; }
 .newsletter-strip-copy { flex: 1; }
-.newsletter-strip-label { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+.newsletter-strip-label { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 10px; }
 .newsletter-strip-heading { font-size: 28px; font-weight: 300; color: #fff; line-height: 1.2; margin-bottom: 8px; }
-.newsletter-strip-sub { font-family: 'Jost', sans-serif; font-size: 12px; color: rgba(255,255,255,0.32); font-weight: 300; }
+.newsletter-strip-sub { font-family: 'Jost', sans-serif; font-size: 12px; color: rgba(255,255,255,0.75); font-weight: 300; }
 .newsletter-strip-form { display: flex; flex-shrink: 0; }
-.newsletter-strip-input { width: 240px; padding: 13px 18px; background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.15); color: #fff; font-family: 'Jost', sans-serif; font-size: 13px; outline: none; font-weight: 300; }
-.newsletter-strip-input::placeholder { color: rgba(255,255,255,0.3); }
-.newsletter-strip-btn { padding: 13px 22px; background: var(--plum); color: rgba(255,255,255,0.9); border: none; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; cursor: pointer; font-weight: 400; white-space: nowrap; transition: background 0.2s; }
+.newsletter-strip-input { width: 240px; padding: 13px 18px; background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.4); color: #fff; font-family: 'Jost', sans-serif; font-size: 13px; outline: none; font-weight: 300; }
+.newsletter-strip-input::placeholder { color: rgba(255,255,255,0.6); }
+.newsletter-strip-btn { padding: 13px 22px; background: var(--plum); color: #fff; border: none; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; cursor: pointer; font-weight: 400; white-space: nowrap; transition: background 0.2s; }
 .newsletter-strip-btn:hover { background: #5a0a1a; }
 
 /* FOOTER */
 footer { background: var(--mauve-footer); padding: 56px 40px 32px; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; border-top: 0.5px solid var(--mauve-footer-dark); }
 .footer-script { font-family: 'Alex Brush', cursive; font-size: 42px; color: var(--plum); display: block; margin-bottom: 12px; line-height: 1; }
-.footer-tagline { font-family: 'Jost', sans-serif; font-size: 12px; color: var(--text-mid); font-weight: 300; line-height: 1.65; max-width: 210px; }
-.footer-col-label { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mauve); margin-bottom: 18px; font-weight: 400; }
+.footer-tagline { font-family: 'Jost', sans-serif; font-size: 12px; color: #3D2430; font-weight: 400; line-height: 1.65; max-width: 210px; }
+.footer-col-label { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #5C3348; margin-bottom: 18px; font-weight: 600; }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-.footer-links a { font-family: 'Jost', sans-serif; font-size: 13px; color: var(--text-mid); font-weight: 300; transition: color 0.2s; }
+.footer-links a { font-family: 'Jost', sans-serif; font-size: 13px; color: #3D2430; font-weight: 400; transition: color 0.2s; }
 .footer-links a:hover { color: var(--plum); }
 .footer-bottom { background: var(--mauve-footer-dark); padding: 16px 40px; display: flex; justify-content: space-between; }
-.footer-copy { font-family: 'Jost', sans-serif; font-size: 11px; color: var(--text-mid); font-weight: 300; }
+.footer-copy { font-family: 'Jost', sans-serif; font-size: 11px; color: #3D2430; font-weight: 400; }
 
-/* ── MOBILE — applies to every page via globals ──────────────────────────── */
+/* â”€â”€ MOBILE â€” applies to every page via globals â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width: 768px) {
 
   /* NAV */
@@ -205,7 +205,7 @@ footer { background: var(--mauve-footer); padding: 56px 40px 32px; display: grid
   .recipe-card-img { height: 200px; }
   .recipe-card-name { font-size: 18px; }
 
-  /* NEWSLETTER — stacks on ALL pages */
+  /* NEWSLETTER â€” stacks on ALL pages */
   .newsletter-strip { padding: 32px 20px; }
   .newsletter-strip-inner {
     flex-direction: column;
@@ -217,7 +217,7 @@ footer { background: var(--mauve-footer); padding: 56px 40px 32px; display: grid
   .newsletter-strip-form { width: 100%; }
   .newsletter-strip-input { width: 100%; min-width: 0; flex: 1; }
 
-  /* FOOTER — stacks on ALL pages */
+  /* FOOTER â€” stacks on ALL pages */
   footer {
     grid-template-columns: 1fr;
     padding: 40px 20px 24px;
