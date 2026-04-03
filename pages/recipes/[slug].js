@@ -42,39 +42,41 @@ export default function RecipePage({ recipe, parsed }) {
 
       <Nav />
 
+      <main id="main-content">
+
       {/* BREADCRUMB */}
-      <div style={{
+      <nav aria-label="Breadcrumb" style={{
         background: 'var(--warm-white)',
         borderBottom: '0.5px solid var(--border-m)',
         padding: '14px 40px',
         fontFamily: "'Jost', sans-serif",
         fontSize: '10px',
         letterSpacing: '0.12em',
-        color: 'var(--mauve)',
+        color: 'var(--text-mid)',
         display: 'flex',
         gap: '8px',
         alignItems: 'center',
       }}>
-        <Link href="/" style={{ color: 'var(--mauve)' }}>Home</Link>
-        <span>›</span>
-        <Link href="/recipes" style={{ color: 'var(--mauve)' }}>Recipes</Link>
-        <span>›</span>
+        <Link href="/" style={{ color: 'var(--text-mid)' }}>Home</Link>
+        <span aria-hidden="true">›</span>
+        <Link href="/recipes" style={{ color: 'var(--text-mid)' }}>Recipes</Link>
+        <span aria-hidden="true">›</span>
         {recipe.category && (
           <>
             <Link
               href={`/categories/${recipe.category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-              style={{ color: 'var(--mauve)' }}
+              style={{ color: 'var(--text-mid)' }}
             >
               {recipe.category}
             </Link>
-            <span>›</span>
+            <span aria-hidden="true">›</span>
           </>
         )}
-        <span style={{ color: 'var(--text-dark)' }}>{recipe.title}</span>
-      </div>
+        <span style={{ color: 'var(--text-dark)' }} aria-current="page">{recipe.title}</span>
+      </nav>
 
       {/* RECIPE CONTENT */}
-      <main style={{
+      <div style={{
         background: 'var(--warm-white)',
         padding: '64px 40px 80px',
         maxWidth: '1100px',
@@ -105,7 +107,7 @@ export default function RecipePage({ recipe, parsed }) {
                     fontSize: '9px',
                     letterSpacing: '0.18em',
                     textTransform: 'uppercase',
-                    color: 'var(--mauve)',
+                    color: 'var(--text-mid)',
                     border: '0.5px solid var(--border-m)',
                     padding: '4px 10px',
                     fontWeight: 400,
@@ -124,7 +126,7 @@ export default function RecipePage({ recipe, parsed }) {
               fontSize: '9px',
               letterSpacing: '0.3em',
               textTransform: 'uppercase',
-              color: 'var(--mauve)',
+              color: 'var(--text-mid)',
               marginBottom: '10px',
               fontWeight: 400,
             }}>
@@ -143,7 +145,7 @@ export default function RecipePage({ recipe, parsed }) {
             <span style={{
               fontFamily: "'Alex Brush', cursive",
               fontSize: '28px',
-              color: 'var(--mauve)',
+              color: 'var(--plum)',
               display: 'block',
               marginBottom: '20px',
             }}>
@@ -168,7 +170,7 @@ export default function RecipePage({ recipe, parsed }) {
               fontSize: '9px',
               letterSpacing: '0.28em',
               textTransform: 'uppercase',
-              color: 'var(--mauve)',
+              color: 'var(--text-mid)',
               fontWeight: 400,
               marginBottom: '16px',
             }}>
@@ -209,7 +211,7 @@ export default function RecipePage({ recipe, parsed }) {
                         {amount && (
                           <span style={{
                             fontFamily: "'Jost', sans-serif", fontSize: '12px',
-                            color: 'var(--mauve)', fontWeight: 400, whiteSpace: 'nowrap',
+                            color: 'var(--text-mid)', fontWeight: 400, whiteSpace: 'nowrap',
                           }}>
                             {amount}
                           </span>
@@ -264,7 +266,7 @@ export default function RecipePage({ recipe, parsed }) {
                           {amount && (
                             <span style={{
                               fontFamily: "'Jost', sans-serif", fontSize: '12px',
-                              color: 'var(--mauve)', fontWeight: 400, whiteSpace: 'nowrap',
+                              color: 'var(--text-mid)', fontWeight: 400, whiteSpace: 'nowrap',
                             }}>
                               {amount}
                             </span>
@@ -283,7 +285,7 @@ export default function RecipePage({ recipe, parsed }) {
               fontSize: '9px',
               letterSpacing: '0.28em',
               textTransform: 'uppercase',
-              color: 'var(--mauve)',
+              color: 'var(--text-mid)',
               fontWeight: 400,
               marginBottom: '16px',
               marginTop: '32px',
@@ -297,6 +299,8 @@ export default function RecipePage({ recipe, parsed }) {
             </div>
           </div>
         </div>
+      </div>
+
       </main>
 
       <Newsletter />
