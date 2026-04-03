@@ -27,6 +27,8 @@ export default function Home({ featured, recent }) {
 
       <Nav />
 
+      <main id="main-content">
+
       {/* ── HERO ── */}
       <section className="hero-section">
         <div className="hero-text">
@@ -35,7 +37,7 @@ export default function Home({ featured, recent }) {
             fontSize: '11px',
             letterSpacing: '0.32em',
             textTransform: 'uppercase',
-            color: 'var(--mauve)',
+            color: 'var(--text-mid)',
             fontWeight: 400,
             marginBottom: '20px',
             display: 'flex',
@@ -149,7 +151,7 @@ export default function Home({ featured, recent }) {
                   fontSize: '11px',
                   letterSpacing: '0.3em',
                   textTransform: 'uppercase',
-                  color: 'var(--mauve)',
+                  color: 'var(--text-mid)',
                   marginBottom: '14px',
                   fontWeight: 400,
                 }}>
@@ -296,7 +298,7 @@ export default function Home({ featured, recent }) {
           gap: '16px',
         }}>
           <div>
-            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--mauve)', fontWeight: 400, marginBottom: '3px' }}>In the press</div>
+            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--text-mid)', fontWeight: 400, marginBottom: '3px' }}>In the press</div>
             <div style={{ fontFamily: "'Alex Brush', cursive", fontSize: '44px', color: 'var(--plum)', lineHeight: 1 }}>Featured In</div>
           </div>
           <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-mid)', border: '0.5px solid var(--border-m)', padding: '8px 18px', fontWeight: 400 }}>
@@ -317,7 +319,7 @@ export default function Home({ featured, recent }) {
                 <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'var(--plum)', color: '#fff', fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', padding: '4px 9px', fontWeight: 400 }}>Featured Recipe</span>
               </div>
               <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--mauve)', fontWeight: 400, marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--text-mid)', fontWeight: 400, marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span style={{ display: 'inline-block', width: '14px', height: '0.5px', background: 'var(--mauve-light)' }} />
                   Hedessent.ca
                 </div>
@@ -345,6 +347,8 @@ export default function Home({ featured, recent }) {
           ))}
         </div>
       </section>
+
+      </main>
 
       <Newsletter />
       <Footer />
