@@ -32,6 +32,7 @@ export default function CategoriesIndex() {
         <meta name="description" content="Browse recipes by category. Cookies, cakes, brownies, muffins, breads, donuts and more from Josephine's Baking." />
       </Head>
       <Nav />
+      <main id="main-content">
       <div style={{
         background: 'var(--warm-white)',
         padding: '56px 40px 48px',
@@ -43,7 +44,7 @@ export default function CategoriesIndex() {
           fontSize: '9px',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
-          color: 'var(--mauve)',
+          color: 'var(--text-mid)',
           marginBottom: '12px',
           fontWeight: 400,
         }}>
@@ -102,6 +103,7 @@ export default function CategoriesIndex() {
           ))}
         </div>
       </section>
+      </main>
       <Newsletter />
       <Footer />
     </>
