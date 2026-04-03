@@ -43,6 +43,8 @@ export default function RecipesIndex({ recipes }) {
 
       <Nav />
 
+      <main id="main-content">
+
       {/* CATEGORY STRIP */}
       <div className="cat-strip">
         <button
@@ -107,7 +109,7 @@ export default function RecipesIndex({ recipes }) {
                 onClick={() => setQuery('')}
                 style={{
                   padding: '0 14px', background: 'none', border: 'none',
-                  cursor: 'pointer', color: 'var(--mauve)', fontSize: '18px', lineHeight: 1,
+                  cursor: 'pointer', color: 'var(--text-mid)', fontSize: '18px', lineHeight: 1,
                 }}
               >
                 ×
@@ -118,7 +120,7 @@ export default function RecipesIndex({ recipes }) {
             marginTop: '10px',
             fontFamily: "'Jost', sans-serif",
             fontSize: '11px',
-            color: 'var(--mauve)',
+            color: 'var(--text-mid)',
             letterSpacing: '0.06em',
           }}>
             Try: &ldquo;brown butter&rdquo; &nbsp;&middot;&nbsp; &ldquo;muffins&rdquo; &nbsp;&middot;&nbsp; &ldquo;cinnamon rolls&rdquo;
@@ -144,6 +146,8 @@ export default function RecipesIndex({ recipes }) {
           </div>
         )}
       </section>
+
+      </main>
 
       <Newsletter />
       <Footer />
