@@ -14,7 +14,7 @@ export default function About() {
         <meta name="description" content="Hi, I'm Josephine. A self-taught baker, content creator, and full-time dessert enthusiast sharing tested recipes from scratch." />
       </Head>
       <Nav />
-      <main>
+      <main id="main-content">
         {/* Desktop layout — text + vertical marquee side by side */}
         <section className="about-desktop">
           <div>
