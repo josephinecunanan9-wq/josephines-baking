@@ -33,6 +33,7 @@ export default function CategoryPage({ category, recipes }) {
         <meta name="description" content={`Browse all ${category.toLowerCase()} recipes from Josephine's Baking. Homemade, tested, and straightforward.`} />
       </Head>
       <Nav />
+      <main id="main-content">
       <div style={{
         background: 'var(--warm-white)',
         padding: '56px 40px 48px',
@@ -44,7 +45,7 @@ export default function CategoryPage({ category, recipes }) {
           fontSize: '9px',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
-          color: 'var(--mauve)',
+          color: 'var(--text-mid)',
           marginBottom: '12px',
           fontWeight: 400,
         }}>
@@ -79,6 +80,7 @@ export default function CategoryPage({ category, recipes }) {
           ))}
         </div>
       </section>
+      </main>
       <Newsletter />
       <Footer />
     </>
