@@ -56,7 +56,7 @@ export default function Newsletter() {
             <p style={{
               fontFamily: "'Jost', sans-serif",
               fontSize: '13px',
-              color: 'rgba(255,255,255,0.55)',
+              color: 'rgba(255,255,255,0.8)',
               fontWeight: 300,
             }}>
               New recipes are coming your way. So glad you&apos;re here.
@@ -67,7 +67,7 @@ export default function Newsletter() {
             <div className="newsletter-strip-copy">
               <div className="newsletter-strip-label">Stay in the loop</div>
               <h2 className="newsletter-strip-heading">
-                New recipes, <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.5)' }}>straight to your inbox</em> 💌
+                New recipes, <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.85)' }}>straight to your inbox</em> 💌
               </h2>
               <p className="newsletter-strip-sub">No spam. Just the recipe.</p>
             </div>
@@ -100,7 +100,7 @@ export default function Newsletter() {
               <p style={{
                 fontFamily: "'Jost', sans-serif",
                 fontSize: '10px',
-                color: 'rgba(255,255,255,0.22)',
+                color: 'rgba(255,255,255,0.7)',
                 fontWeight: 300,
                 marginTop: '8px',
                 lineHeight: 1.5,
