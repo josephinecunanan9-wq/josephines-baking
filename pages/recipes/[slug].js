@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
@@ -91,11 +92,14 @@ export default function RecipePage({ recipe, parsed }) {
           {/* LEFT: Image */}
           <div style={{ position: 'sticky', top: '88px' }}>
             {recipe.coverImage && (
-              <div style={{ height: '520px', overflow: 'hidden', background: 'var(--blush)', marginBottom: '20px' }}>
-                <img
+              <div style={{ position: 'relative', height: '520px', overflow: 'hidden', background: 'var(--blush)', marginBottom: '20px' }}>
+                <Image
                   src={recipe.coverImage}
                   alt={recipe.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  priority
                 />
               </div>
             )}
