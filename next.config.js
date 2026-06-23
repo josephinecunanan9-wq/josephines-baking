@@ -8,26 +8,26 @@ const nextConfig = {
       },
     ],
   },
-
+  async redirects() {
+    return [
+      {
+        source: '/ugc',
+        destination: 'https://ugcjosephine.my.canva.site/portfolio',
+        permanent: false,
+      },
+    ]
+  },
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
-          // Prevent clickjacking
           { key: 'X-Frame-Options', value: 'DENY' },
-          // Prevent MIME sniffing
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          // Stop referrer leaking
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          // Disable browser features not needed
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-          // Force HTTPS
           { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-          // Basic XSS protection for older browsers
           { key: 'X-XSS-Protection', value: '1; mode=block' },
-          // Content Security Policy
-          // unsafe-inline is required by Next.js for style injection; script-src uses strict-dynamic
           {
             key: 'Content-Security-Policy',
             value: [
@@ -49,5 +49,4 @@ const nextConfig = {
     ]
   },
 }
-
 module.exports = nextConfig
