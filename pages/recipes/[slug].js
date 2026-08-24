@@ -321,7 +321,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const recipe = await getRecipeBySlug(params.slug)
-  if (!recipe) return { notFound: true }
+  if (!recipe) return { notFound: true, revalidate: 60 }
   const parsed = parsePostBody(recipe.postBody)
   return { props: { recipe, parsed }, revalidate: 3600 }
 }
