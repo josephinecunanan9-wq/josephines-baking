@@ -30,3 +30,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# npm lockfile from local test builds - the deploy resolves its own
+package-lock.json
