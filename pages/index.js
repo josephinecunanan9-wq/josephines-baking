@@ -4,6 +4,7 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Newsletter from '../components/Newsletter'
 import RecipeCard from '../components/RecipeCard'
+import { thumbFor } from '../lib/images'
 import { HorizontalPhotoMarquee } from '../components/PhotoMarquee'
 import { getAllRecipes } from '../lib/recipes'
 
@@ -95,8 +96,10 @@ export default function Home({ featured, recent }) {
             >
               {recipe.coverImage && (
                 <img
-                  src={recipe.coverImage}
+                  src={i === 0 ? recipe.coverImage : thumbFor(recipe.coverImage)}
                   alt={recipe.title}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
               )}
@@ -141,6 +144,8 @@ export default function Home({ featured, recent }) {
                   <img
                     src={featured[0].coverImage}
                     alt={featured[0].title}
+                    loading="lazy"
+                    decoding="async"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 )}
@@ -315,7 +320,7 @@ export default function Home({ featured, recent }) {
               onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 8px 32px rgba(113,12,33,0.08)'; e.currentTarget.style.transform = 'translateY(0)' }}
             >
               <div className="featured-in-img">
-                <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src={item.img} alt={item.name} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'var(--plum)', color: '#fff', fontFamily: "'Jost', sans-serif", fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', padding: '4px 9px', fontWeight: 400 }}>Featured Recipe</span>
               </div>
               <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

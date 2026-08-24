@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { thumbFor } from '../lib/images'
 
 export default function RecipeCard({ recipe }) {
   return (
@@ -6,9 +7,17 @@ export default function RecipeCard({ recipe }) {
       <div className="recipe-card-img">
         {recipe.coverImage && (
           <img
-            src={recipe.coverImage}
+            src={thumbFor(recipe.coverImage)}
             alt={recipe.title}
             loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              // A photo added without a thumbnail still shows, just heavier.
+              if (!e.currentTarget.dataset.fullSize) {
+                e.currentTarget.dataset.fullSize = '1'
+                e.currentTarget.src = recipe.coverImage
+              }
+            }}
           />
         )}
         {recipe.category && (
